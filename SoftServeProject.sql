@@ -41,15 +41,15 @@ CREATE TABLE Bookmark(
 DROP TABLE IF EXISTS library CASCADE; 
 CREATE TABLE Library(
 	library_id serial PRIMARY KEY,
-	library_name text
-)
+	library_name varchar(50)
+);
 
 DROP TABLE IF EXISTS Books_and_libraries CASCADE; 
 CREATE TABLE Books_and_libraries(
 	link_id serial PRIMARY KEY,
 	library_id int REFERENCES library,
 	file_path text REFERENCES Book
-)
+);
 
 
 
