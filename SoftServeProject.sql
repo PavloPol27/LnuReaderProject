@@ -7,6 +7,9 @@ DROP TABLE IF EXISTS Book CASCADE;
 CREATE TABLE Book(
 	file_path text PRIMARY KEY,
 	file_name text,
+	author varchar(20),
+	genre varchar(20),
+	published Date,
 	file_stoped_page not_negative_page
 );
 
@@ -35,7 +38,18 @@ CREATE TABLE Bookmark(
 	bookmark_in_book text REFERENCES Book
 );
 
+DROP TABLE IF EXISTS library CASCADE; 
+CREATE TABLE Library(
+	library_id serial PRIMARY KEY,
+	library_name text
+)
 
+DROP TABLE IF EXISTS Books_and_libraries CASCADE; 
+CREATE TABLE Books_and_libraries(
+	link_id serial PRIMARY KEY,
+	library_id int REFERENCES library,
+	file_path text REFERENCES Book
+)
 
 
 
