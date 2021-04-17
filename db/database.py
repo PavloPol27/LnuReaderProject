@@ -1,4 +1,4 @@
-from sqlite3 import connect, Error, OperationalError, Connection
+from resources.sqlite3 import connect, Error, OperationalError, Connection
 
 
 def create_connection(db_file):
