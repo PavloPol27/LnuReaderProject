@@ -1,10 +1,9 @@
-import main_menu
 import settings_menu
 
 
 class Styles:
     @staticmethod
-    def set_main_menu_styles(window: main_menu.MainWindow):
+    def set_main_menu_styles(window):
         # Main style
         window.setStyleSheet("""
                 background-color: beige;
@@ -191,7 +190,7 @@ class Styles:
         """)
 
     @staticmethod
-    def set_category_button_styles(category_button: main_menu.QPushButton):
+    def set_category_button_styles(category_button):
         category_button.setStyleSheet("""  
                 QPushButton
                 {          
@@ -216,7 +215,7 @@ class Styles:
                 """)
 
     @staticmethod
-    def set_settings_styles(window: settings_menu.SettingsWindow):
+    def set_settings_styles():
         window.setStyleSheet("""
                         background-color: beige;
                         color: #5c5c5c;
