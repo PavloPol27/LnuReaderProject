@@ -59,7 +59,9 @@ class UALocalizator(Localizator):
 
 
 def set_main_menu_localization(window):
-    with open('language.json') as json_file:
+    # changed the directory to solve the problem localy;
+    # file was not found without full path.
+    with open('E:\Написані програми\Python\BookReaderProject\design\language.json') as json_file:
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
         ENLocalizator().localize_main_window(window)
