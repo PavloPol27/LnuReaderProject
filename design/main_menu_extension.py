@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QShortcut, QFileDialog
+from PyQt5.QtWidgets import QApplication, QShortcut, QFileDialog, QMessageBox
 from main_menu import MainWindow
 import sys
 import logging
@@ -10,14 +10,15 @@ class WidnowInteractivity(MainWindow):
     def __init__(self):
         super().__init__()
         self.accaptableFormats = ['.pdf', '.epub', '.fb2']
-        self.filesDirectories = []
+        self.filesDirectories
+        self.deleteDialog = QMessageBox()
 
 #------------------------------------------------------
 #------------------Open File--------------------------
 #------------------------------------------------------
-        QShortcut("Ctrl+O", self).activated.connect(self.openFile)
-        self.addBookQButton.clicked.connect(self.openFile)
-
+        QShortcut("Ctrl+O", self).activated.connect(self.openFiles)
+        self.addBookQButton.clicked.connect(self.openFiles)
+        self.removeBookQButton.clicked.connect(self.deleteFile)
         #drag and drop
         self.setAcceptDrops(True)
 
@@ -42,7 +43,7 @@ class WidnowInteractivity(MainWindow):
                 logging.info(f"file's url = {url} was added")
 
 
-    def openFile(self):
+    def openFiles(self):
         directories, _ = QFileDialog.getOpenFileNames(self, filter = 'PDF (*.pdf);; FB2 (*.fb2);; EPUB (*.epub)')
         self.addFile(directories)
             # TODO:
@@ -58,6 +59,15 @@ class WidnowInteractivity(MainWindow):
             else:
                 logging.info(f"Directory {directory} was ignored.")
 
+#------------------------------------------------------
+#------------------Delete File------------------------
+#------------------------------------------------------    
+    def deleteFile(self):
+        if self.table.currentColumn() != 0:
+            return
+        else:
+            print(self.table.currentRow())
+            print(self.deleteDialog.exec_())
 
 
 if __name__ == "__main__":
