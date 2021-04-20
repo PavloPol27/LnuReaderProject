@@ -215,7 +215,7 @@ class Styles:
                 """)
 
     @staticmethod
-    def set_settings_styles():
+    def set_settings_styles(window):
         window.setStyleSheet("""
                         background-color: beige;
                         color: #5c5c5c;
