@@ -80,3 +80,4 @@ def set_settings_localization(window):
         UALocalizator().localize_settings_window(window)
     else:
         raise Exception('something goes wrong.')
+

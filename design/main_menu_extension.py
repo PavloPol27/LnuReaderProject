@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QShortcut, QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QApplication, QShortcut, QFileDialog, QDialog
 from main_menu import MainWindow
 import sys
 import logging
@@ -10,8 +10,8 @@ class WidnowInteractivity(MainWindow):
     def __init__(self):
         super().__init__()
         self.accaptableFormats = ['.pdf', '.epub', '.fb2']
-        self.filesDirectories
-        self.deleteDialog = QMessageBox()
+        self.filesDirectories = []
+        self.deleteDialog = QDialog(QDialog)
 
 #------------------------------------------------------
 #------------------Open File--------------------------
