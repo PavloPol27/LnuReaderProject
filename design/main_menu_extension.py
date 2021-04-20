@@ -72,8 +72,10 @@ class WidnowInteractivity(MainWindow):
         
     def deleteFile(self, r, c):
         if c != 0:
+            logging.info(f"Deleting from table is declined for item row = {r}, column = {c}")
             return
         self.table.removeRow(r)
+        logging.info(f"Deleted item in table with row = {r}, column = {c}")
     
 
    
