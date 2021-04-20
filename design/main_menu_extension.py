@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QShortcut, QFileDialog, QDialog
 from main_menu import MainWindow
+from dialog_confirm_decline import ConfirmDialog
 import sys
 import logging
 
@@ -11,14 +12,16 @@ class WidnowInteractivity(MainWindow):
         super().__init__()
         self.accaptableFormats = ['.pdf', '.epub', '.fb2']
         self.filesDirectories = []
-        self.deleteDialog = QDialog(QDialog)
+        self.deleteDialog = ConfirmDialog()
 
 #------------------------------------------------------
 #------------------Open File--------------------------
 #------------------------------------------------------
         QShortcut("Ctrl+O", self).activated.connect(self.openFiles)
+        QShortcut("Del", self).activated.connect(self.deleteFiles)
+        QShortcut("Ctrl+A", self).activated.connect(lambda: self.table.selectAll())
         self.addBookQButton.clicked.connect(self.openFiles)
-        self.removeBookQButton.clicked.connect(self.deleteFile)
+        self.removeBookQButton.clicked.connect(self.deleteFiles)
         #drag and drop
         self.setAcceptDrops(True)
 
@@ -62,13 +65,18 @@ class WidnowInteractivity(MainWindow):
 #------------------------------------------------------
 #------------------Delete File------------------------
 #------------------------------------------------------    
-    def deleteFile(self):
-        if self.table.currentColumn() != 0:
+    def deleteFiles(self):
+        if self.deleteDialog.exec_():
+            for index in self.table.selectedItems():
+                self.deleteFile(index.row(), index.column())
+        
+    def deleteFile(self, r, c):
+        if c != 0:
             return
-        else:
-            print(self.table.currentRow())
-            print(self.deleteDialog.exec_())
+        self.table.removeRow(r)
+    
 
+   
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
