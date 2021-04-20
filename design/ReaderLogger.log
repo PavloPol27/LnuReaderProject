@@ -1,0 +1,15 @@
+time:2021-04-20 11:46:22,206, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf') was added
+time:2021-04-20 11:46:49,001, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf') was added
+time:2021-04-20 11:46:49,319, called:dropEvent — file's url = C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf was added
+time:2021-04-20 11:48:25,970, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/Planets (òåñò).pdf') was added
+time:2021-04-20 11:49:02,434, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/Planets (òåñò).pdf') was added
+time:2021-04-20 11:50:09,995, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf') was added
+time:2021-04-20 11:50:10,385, called:dropEvent — file's url = C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf was added
+time:2021-04-20 11:50:10,385, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Êàëüêóëÿòîğ Èíòåãğàëîâ • Ïî øàãàì!.pdf was added
+time:2021-04-20 11:50:10,385, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Êîììåíòàğèé 2.pdf was added
+time:2021-04-20 11:50:10,385, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Planets (òåñò).pdf was added
+time:2021-04-20 11:50:18,172, called:dragEnterEvent — file's url = PyQt5.QtCore.QUrl('file:///C:/Users/User_pc/Desktop/Êàëüêóëÿòîğ Èíòåãğàëîâ • Ïî øàãàì!.pdf') was added
+time:2021-04-20 11:50:18,801, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Êàëüêóëÿòîğ Èíòåãğàëîâ • Ïî øàãàì!.pdf was declined
+time:2021-04-20 11:50:18,801, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Êîììåíòàğèé 2.pdf was declined
+time:2021-04-20 11:50:18,801, called:dropEvent — file's url = C:/Users/User_pc/Desktop/Planets (òåñò).pdf was declined
+time:2021-04-20 11:50:18,801, called:dropEvent — file's url = C:/Users/User_pc/Desktop/ÄÈÔÔÅĞÅÍÖÈÀËÜÍÀß ÃÅÎÌÅÒĞÈß. ÁÀÇÎÂÛÉ ÊÓĞÑ ËÅÊÖÈÉ..pdf was declined
