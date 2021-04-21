@@ -13,9 +13,8 @@ import logging
 from functools import partial
 logging.basicConfig(filename = 'ReaderLogger.log', 
                     level = logging.INFO, 
-                    format = 'Called from:%(funcName)s, %(message)s, time: %(asctime)s')
-
-
+                    format = 'Called from:%(funcName)s, %(message)s, time: %(asctime)s')  
+  
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -246,7 +245,11 @@ class WindowInteractivity(MainWindow):
         self.removeBookQButton.clicked.connect(self.deleteFiles)
         #drag and drop
         self.setAcceptDrops(True)
+        self.table.clicked.connect(lambda index: self.table.selectRow(index.row()))
 
+
+    def selectCol(self, index):
+        self.table.selectRow(index.row())
     def dragEnterEvent(self, event):
         url = str(event.mimeData().urls()[0])
         if any([format in url for format in self.accaptableFormats]):
@@ -298,9 +301,7 @@ class WindowInteractivity(MainWindow):
             return
         self.table.removeRow(r)
         logging.info(f"Deleted item in table with row = {r}, column = {c}")
-    
-
-   
+       
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = WindowInteractivity()

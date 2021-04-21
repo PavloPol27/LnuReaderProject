@@ -8,11 +8,7 @@ import json
 import localize
 import styles
 import main_menu
-import logging
 
-logging.basicConfig(filename = 'ReaderLogger.log', 
-                    level = logging.INFO, 
-                    format = 'Called from:%(funcName)s, %(message)s, time: %(asctime)')
 
 
 class SettingsWindow(QMainWindow):

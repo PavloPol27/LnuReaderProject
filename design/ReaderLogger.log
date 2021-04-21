@@ -124,3 +124,5 @@ Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 20
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 11:18:36,913
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 11:18:36,913
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 11:18:36,913
+Called from:deleteFile, Deleted item in table with row = 5, column = 0, time: 2021-04-21 11:25:45,757
+Called from:deleteFile, Deleted item in table with row = 3, column = 0, time: 2021-04-21 11:25:48,425
