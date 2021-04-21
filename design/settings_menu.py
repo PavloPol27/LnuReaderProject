@@ -8,6 +8,11 @@ import json
 import localize
 import styles
 import main_menu
+import logging
+
+logging.basicConfig(filename = 'ReaderLogger.log', 
+                    level = logging.INFO, 
+                    format = 'Called from:%(funcName)s, %(message)s, time: %(asctime)')
 
 
 class SettingsWindow(QMainWindow):
@@ -122,7 +127,7 @@ class SettingsWindow(QMainWindow):
 
     def back_button_clicked(self):
         if self.main_window is None:
-            self.main_window = main_menu.MainWindow()
+            self.main_window = main_menu.WindowInteractivity()
         self.main_window.show()
         self.close()
 

@@ -1,6 +1,3 @@
-import settings_menu
-
-
 class Styles:
     @staticmethod
     def set_main_menu_styles(window):
