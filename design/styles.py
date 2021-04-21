@@ -1,10 +1,14 @@
 class Styles:
+    def __init__(self):
+        pass
+
     @staticmethod
     def set_main_menu_styles(window):
         # Main style
         window.setStyleSheet("""
                 background-color: beige;
                 color: #5c5c5c;
+                font-family: "Century Gothic";
                 """)
 
         # Book buttons styles
@@ -24,7 +28,7 @@ class Styles:
                 {
                 border: 0;
                 font-size: 15px;
-                width: 140px;
+                width: 145px;
                 height: 55px;
                 }
                 """)
@@ -55,7 +59,7 @@ class Styles:
                 QPushButton:hover
                 {
                 border: 2px dashed #5c5c5c;
-                border-radius: 20px;
+                border-radius: 27px;
                 }
 
                 QPushButton:pressed 
@@ -91,8 +95,22 @@ class Styles:
         window.libLabel.setStyleSheet("""
                 border-bottom: 0;
                 border-top: 0;
+                font-size: 30px;
+                padding-top:0;
                 """)
 
+        window.context_menu.setStyleSheet("""
+        QMenu
+        {
+        background-color: beige;
+        color: #5c5c5c;
+        }
+        QMenu::item:selected
+        {
+        background-color: lightgrey;
+        color: black;
+        }
+        """)
         # Categories styles
         window.categoriesQWidget.setStyleSheet("""
                 border-bottom: 0;
@@ -118,12 +136,14 @@ class Styles:
         window.content.setStyleSheet("""
                 border: 1px solid #5c5c5c;
                 border-left: 0;
+                background-color: white;
                 """)
 
         # Category label styles
         window.categoryQLabel.setStyleSheet("""
                 border-bottom: 0;
                 border-left: 0;
+                font-size: 30px;
                 """)
 
         # Table styles
@@ -183,8 +203,24 @@ class Styles:
                 width: 100px;
                 height: 25px;
                 }
-                
+
         """)
+
+    @staticmethod
+    def set_clicked_category_button_styles(category_button):
+        category_button.setStyleSheet("""  
+                    QPushButton
+                    {  
+                    color: white;
+                    background-color : #6938fb;
+                    border-top: 0;
+                    border-bottom: 0;
+                    font-size: 12px;
+                    padding-left: 10px;
+                    height: 30px;
+                    text-align: left;        
+                    }
+                    """)
 
     @staticmethod
     def set_category_button_styles(category_button):
@@ -203,12 +239,6 @@ class Styles:
                 color: white;
                 background-color : #6938fb;
                 }
-                QPushButton:focus
-                {
-                border:0;
-                color: white;
-                background-color : #6938fb;
-                }
                 """)
 
     @staticmethod
@@ -216,8 +246,14 @@ class Styles:
         window.setStyleSheet("""
                         background-color: beige;
                         color: #5c5c5c;
+                        font-family: "Century Gothic";
                         """)
-
+        window.settingsLabel.setStyleSheet("""
+        font-size: 30px;
+        """)
+        window.languageLabel.setStyleSheet("""
+        font-size: 20px;
+        """)
         window.backQButton.setStyleSheet("""
                 QPushButton:hover
                 {

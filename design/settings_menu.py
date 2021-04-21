@@ -43,7 +43,6 @@ class SettingsWindow(QMainWindow):
 
         # Settings Label
         self.settingsLabel = QLabel()
-        self.settingsLabel.setFont(QFont("Agency FB", 20))
 
         # Container
         self.container = QWidget()
@@ -56,7 +55,6 @@ class SettingsWindow(QMainWindow):
 
         # Language Label
         self.languageLabel = QLabel()
-        self.languageLabel.setFont(QFont("Agency FB", 12))
 
         # Language buttons
         self.ENButton = QPushButton()
@@ -70,8 +68,8 @@ class SettingsWindow(QMainWindow):
         self.UAButton.setIconSize(QSize(32, 32))
 
         self.buttons = [self.ENButton, self.UAButton]
-        self.ENButton.clicked.connect(self.category_button_clicked)
-        self.UAButton.clicked.connect(self.category_button_clicked)
+        self.ENButton.clicked.connect(self.language_button_clicked)
+        self.UAButton.clicked.connect(self.language_button_clicked)
 
         localize.set_settings_localization(self)
         styles.Styles.set_settings_styles(self)
@@ -108,7 +106,7 @@ class SettingsWindow(QMainWindow):
         self.body.setLayout(self.bodyQVBoxLayout)
         self.setCentralWidget(self.body)
 
-    def category_button_clicked(self):
+    def language_button_clicked(self):
         button = self.sender()
         for lg_button in self.buttons:
             if lg_button == button:

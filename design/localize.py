@@ -1,5 +1,7 @@
 # Program supports EN, UA languages
 import json
+from PyQt5.QtCore import QSize
+
 
 # abstract base class
 class Localizator:
@@ -18,11 +20,14 @@ class ENLocalizator(Localizator):
         window.libLabel.setText('Library')
         window.allQButton.setText('All')
         window.favouritesQButton.setText('Favourites')
+        window.open_act.setText("Open")
+        window.edit_act.setText("Rename")
+        window.delete_act.setText("Delete")
         window.createCategoryQButton.setText('Create new category')
         window.categoryQDialog.setWindowTitle("Create new category")
         window.categoryQDialog.setLabelText("Enter title of category:")
         window.table.setHorizontalHeaderLabels([
-            "Name", "Author", "Genre", "Published", "Page", " "
+            "Name", "Author", "Added", "Page", "Rating", " "
         ])
         window.categoryQDialog.setOkButtonText('Ok')
         window.categoryQDialog.setCancelButtonText('Cancel')
@@ -42,11 +47,14 @@ class UALocalizator(Localizator):
         window.libLabel.setText('Бібліотека')
         window.allQButton.setText('Всі')
         window.favouritesQButton.setText('Улюблені')
+        window.open_act.setText("Відкрити")
+        window.edit_act.setText("Перейменувати")
+        window.delete_act.setText("Видалити")
         window.createCategoryQButton.setText('Створити нову категорію')
         window.categoryQDialog.setWindowTitle("Створити нову категорію")
         window.categoryQDialog.setLabelText("Введіть назву категорії:")
         window.table.setHorizontalHeaderLabels([
-            "Ім\'я", "Автор", "Жанр", "Опубліковано", "Сторінка", " "
+            "Ім\'я", "Автор", "Додано", "Сторінка", "Оцінка", " "
         ])
         window.categoryQDialog.setOkButtonText('Ок')
         window.categoryQDialog.setCancelButtonText('Скасувати')
@@ -59,9 +67,9 @@ class UALocalizator(Localizator):
 
 
 def set_main_menu_localization(window):
-    # changed the directory to solve the problem localy;
+    # changed the directory to solve the problem locally;
     # file was not found without full path.
-    with open('E:\Написані програми\Python\BookReaderProject\design\language.json') as json_file:
+    with open('language.json') as json_file:
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
         ENLocalizator().localize_main_window(window)
@@ -76,8 +84,9 @@ def set_settings_localization(window):
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
         ENLocalizator().localize_settings_window(window)
+        window.ENButton.setIconSize(QSize(56, 56))
     elif lg_info['language'] == 'UA':
         UALocalizator().localize_settings_window(window)
+        window.UAButton.setIconSize(QSize(56, 56))
     else:
         raise Exception('something goes wrong.')
-

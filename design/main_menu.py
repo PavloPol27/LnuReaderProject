@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayout,\
     QHBoxLayout, QApplication, QInputDialog, QTableWidget, QHeaderView, \
     QTableWidgetItem, QLineEdit, QScrollBar, QAbstractItemView, QMessageBox,\
-    QShortcut, QFileDialog
+    QShortcut, QFileDialog, QMenu
 from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
 from PyQt5.QtCore import QSize, Qt
 from dialog_confirm_decline import ConfirmDialog
@@ -11,9 +11,9 @@ import styles
 import settings_menu
 import logging
 from functools import partial
-logging.basicConfig(filename = 'ReaderLogger.log', 
-                    level = logging.INFO, 
-                    format = 'Called from:%(funcName)s, %(message)s, time: %(asctime)s')  
+logging.basicConfig(filename='ReaderLogger.log',
+                    level=logging.INFO,
+                    format='Called from:%(funcName)s, %(message)s, time: %(asctime)s')
   
 
 class MainWindow(QMainWindow):
@@ -74,12 +74,17 @@ class MainWindow(QMainWindow):
         # Side Bar
         self.sideBar = QWidget()
         self.sideBarQVBoxLayout = QVBoxLayout()
-        self.sideBarQVBoxLayout.setContentsMargins(0, 20, 0, 0)
+        self.sideBarQVBoxLayout.setContentsMargins(0, 10, 0, 0)
 
         # Library Label
         self.libLabel = QLabel()
-        self.libLabel.setFont(QFont("Agency FB", 20))
         self.libLabel.setAlignment(Qt.AlignCenter)
+
+        # Context menu
+        self.context_menu = QMenu()
+        self.open_act = self.context_menu.addAction("")
+        self.edit_act = self.context_menu.addAction("")
+        self.delete_act = self.context_menu.addAction("")
 
         # Categories
         self.categoriesQWidget = QWidget()
@@ -112,7 +117,6 @@ class MainWindow(QMainWindow):
 
         # Category title in Content
         self.categoryQLabel = QLabel()
-        self.categoryQLabel.setFont(QFont("Agency FB", 20))
         self.categoryQLabel.setAlignment(Qt.AlignCenter)
 
         # Table
@@ -132,21 +136,6 @@ class MainWindow(QMainWindow):
 
         # Settings window
         self.sett_menu = None
-
-    def category_button_clicked(self):
-        button = self.sender()
-        self.categoryQLabel.setText(button.text())
-
-    def settings_button_clicked(self):
-        if self.sett_menu is None:
-            self.sett_menu = settings_menu.SettingsWindow()
-        self.sett_menu.show()
-        self.close()
-
-    def mousePressEvent(self, a0: QMouseEvent) -> None:
-        focused_widget = QApplication.focusWidget()
-        if isinstance(focused_widget, QLineEdit):
-            focused_widget.clearFocus()
 
     def init_header(self):
         self.headerQHBoxLayout.addWidget(self.addBookQButton)
@@ -177,10 +166,10 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(QHeaderView.Fixed)
         header.setSectionResizeMode(0, QHeaderView.Stretch)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
-        header.setSectionResizeMode(2, QHeaderView.Stretch)
-        header.resizeSection(3, 120)
-        header.resizeSection(4, 100)
-        header.resizeSection(5, 40)
+        header.resizeSection(2, 120)
+        header.resizeSection(3, 100)
+        header.resizeSection(4, 80)
+        header.resizeSection(5, 50)
 
         for i in range(30):
             self.table.insertRow(i)
@@ -224,35 +213,61 @@ class MainWindow(QMainWindow):
 
     def category_button_options(self, category_button):
         styles.Styles.set_category_button_styles(category_button)
+        category_button.setFocusPolicy(Qt.NoFocus)
+        category_button.setContextMenuPolicy(Qt.CustomContextMenu)
+        category_button.customContextMenuRequested.connect(self.on_context_menu)
         self.categories.append(category_button)
+
         category_button.clicked.connect(self.category_button_clicked)
+
+    def category_button_clicked(self):
+        button = self.sender()
+        for ctg in self.categories:
+            styles.Styles.set_category_button_styles(ctg)
+        styles.Styles.set_clicked_category_button_styles(button)
+        self.categoryQLabel.setText(button.text())
+
+    def on_context_menu(self, point):
+        button = self.sender()
+        self.context_menu.exec_(button.mapToGlobal(point))
+
+    def settings_button_clicked(self):
+        if self.sett_menu is None:
+            self.sett_menu = settings_menu.SettingsWindow()
+        self.sett_menu.show()
+        self.close()
+
+    def mousePressEvent(self, a0: QMouseEvent) -> None:
+        focused_widget = QApplication.focusWidget()
+        if isinstance(focused_widget, QLineEdit):
+            focused_widget.clearFocus()
 
 
 class WindowInteractivity(MainWindow):
     def __init__(self):
         super().__init__()
-        self.accaptableFormats = ['.pdf', '.epub', '.fb2']
+        self.acceptableFormats = ['.pdf', '.epub', '.fb2']
         self.filesDirectories = []
         self.deleteDialog = ConfirmDialog()
 
-#------------------------------------------------------
-#------------------Open File--------------------------
-#------------------------------------------------------
-        QShortcut("Ctrl+O", self).activated.connect(self.openFiles)
-        QShortcut("Del", self).activated.connect(self.deleteFiles)
+# ------------------------------------------------------
+# ------------------Open File--------------------------
+# ------------------------------------------------------
+        QShortcut("Ctrl+O", self).activated.connect(self.open_files)
+        QShortcut("Del", self).activated.connect(self.delete_files)
         QShortcut("Ctrl+A", self).activated.connect(lambda: self.table.selectAll())
-        self.addBookQButton.clicked.connect(self.openFiles)
-        self.removeBookQButton.clicked.connect(self.deleteFiles)
-        #drag and drop
+        self.addBookQButton.clicked.connect(self.open_files)
+        self.removeBookQButton.clicked.connect(self.delete_files)
+        # drag and drop
         self.setAcceptDrops(True)
         self.table.clicked.connect(lambda index: self.table.selectRow(index.row()))
 
-
-    def selectCol(self, index):
+    def select_col(self, index):
         self.table.selectRow(index.row())
+
     def dragEnterEvent(self, event):
         url = str(event.mimeData().urls()[0])
-        if any([format in url for format in self.accaptableFormats]):
+        if any([form in url for form in self.acceptableFormats]):
             event.accept()
             logging.info(f"file's url = {url} was added")
         else:
@@ -270,16 +285,15 @@ class WindowInteractivity(MainWindow):
                 self.filesDirectories.append(url)
                 logging.info(f"file's url = {url} was added")
 
+    def open_files(self):
+        directories, _ = QFileDialog.getOpenFileNames(self, filter='PDF (*.pdf);; FB2 (*.fb2);; EPUB (*.epub)')
+        self.add_file(directories)
+        # TODO:
+        # add parsing book's metadata;
+        # place information into table;
+        # insert information into database;
 
-    def openFiles(self):
-        directories, _ = QFileDialog.getOpenFileNames(self, filter = 'PDF (*.pdf);; FB2 (*.fb2);; EPUB (*.epub)')
-        self.addFile(directories)
-            # TODO:
-            # add parsing book's metadata;
-            # place information into table;
-            # insert information into database;
-
-    def addFile(self, directories):
+    def add_file(self, directories):
         for directory in directories:
             if directory not in self.filesDirectories:
                 self.filesDirectories.append(directory)
@@ -287,21 +301,22 @@ class WindowInteractivity(MainWindow):
             else:
                 logging.info(f"Directory {directory} was ignored.")
 
-#------------------------------------------------------
-#------------------Delete File------------------------
-#------------------------------------------------------    
-    def deleteFiles(self):
+# ------------------------------------------------------
+# ------------------Delete File------------------------
+# ------------------------------------------------------
+    def delete_files(self):
         if self.deleteDialog.exec_():
             for index in self.table.selectedItems():
-                self.deleteFile(index.row(), index.column())
+                self.delete_file(index.row(), index.column())
         
-    def deleteFile(self, r, c):
+    def delete_file(self, r, c):
         if c != 0:
             logging.info(f"Deleting from table is declined for item row = {r}, column = {c}")
             return
         self.table.removeRow(r)
         logging.info(f"Deleted item in table with row = {r}, column = {c}")
-       
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = WindowInteractivity()
