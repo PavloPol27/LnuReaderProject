@@ -46,9 +46,9 @@ def create_db(connection: Connection):
                                         file_path text PRIMARY KEY,
                                         file_name text,
                                         author varchar(50),
-                                        genre varchar(100),
-                                        published Date,
-                                        file_stopped_page integer CHECK (file_stopped_page >= 0) DEFAULT 0
+                                        added Date,
+                                        file_stopped_page integer CHECK (file_stopped_page >= 0) DEFAULT 0,
+                                        rating integer CHECK (rating >= 0 AND rating <= 10) DEFAULT 0
                                     );"""
 
     sql_create_book_lib_table = """  CREATE TABLE IF NOT EXISTS books_in_libraries(
