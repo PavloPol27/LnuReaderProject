@@ -358,6 +358,19 @@ class WindowInteractivity(MainWindow):
     def open_category(self):
         self.categoryQLabel.setText(self.buttonCalledAction.text())
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()
+        if event.key() == Qt.Key_Down:
+            self.chose_row(1)
+        if event.key() == Qt.Key_Up:
+            self.chose_row(-1)
+
+    def chose_row(self, i=1):
+        if i not in [1, -1]:
+            return
+        row = self.table.currentRow()
+        self.table.selectRow(row+i)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

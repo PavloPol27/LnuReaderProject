@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added logging file to the gitignore.">
+    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Small changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/design/ReaderLogger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/dialog_confirm_decline.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/dialog_confirm_decline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/messages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619082728355</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Small changes.">
+      <created>1619083051239</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619083051239</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,6 +241,7 @@
     <MESSAGE value="Created WarningMessage class." />
     <MESSAGE value="Implement messages classes." />
     <MESSAGE value="Added logging file to the gitignore." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging file to the gitignore." />
+    <MESSAGE value="Small changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small changes." />
   </component>
 </project>

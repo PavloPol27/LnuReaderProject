@@ -70,3 +70,13 @@ Called from:delete_category, Can not delete this category, time: 2021-04-22 12:0
 Called from:rename_category, Can not change this category title, time: 2021-04-22 12:07:11,234
 Called from:delete_category, Removed the category ןפצןפצ, time: 2021-04-22 12:14:43,350
 Called from:delete_category, Removed the category watw, time: 2021-04-22 12:14:48,383
+Called from:delete_file, Deleted item in table with row = 29, column = 0, time: 2021-04-22 12:25:12,765
+Called from:delete_file, Deleted item in table with row = 4, column = 0, time: 2021-04-22 12:25:26,848
+Called from:delete_file, Deleted item in table with row = 4, column = 0, time: 2021-04-22 12:25:26,849
+Called from:delete_file, Deleted item in table with row = 4, column = 0, time: 2021-04-22 12:25:26,849
+Called from:delete_file, Deleted item in table with row = 4, column = 0, time: 2021-04-22 12:25:26,849
+Called from:delete_file, Deleted item in table with row = 6, column = 0, time: 2021-04-22 12:25:29,786
+Called from:delete_file, Deleted item in table with row = 6, column = 0, time: 2021-04-22 12:25:29,786
+Called from:delete_file, Deleted item in table with row = 6, column = 0, time: 2021-04-22 12:25:29,786
+Called from:delete_file, Deleted item in table with row = 6, column = 0, time: 2021-04-22 12:25:29,786
+Called from:delete_file, Deleted item in table with row = 6, column = 0, time: 2021-04-22 12:25:29,787
