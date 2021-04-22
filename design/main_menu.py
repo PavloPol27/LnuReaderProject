@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayo
 from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
 from PyQt5.QtCore import QSize, Qt
 from dialog_confirm_decline import ConfirmDialog
+from messages import ErrorMessage, WarningMessage
 import sys
 import localize
 import styles
@@ -204,12 +205,7 @@ class MainWindow(QMainWindow):
         text = self.categoryQDialog.textValue()
         if ok:
             if text.isspace() or not text:
-                empty_name_message = QMessageBox()
-                empty_name_message.setIcon(QMessageBox.Critical)
-                empty_name_message.setText("Empty input")
-                empty_name_message.setInformativeText('You wrote empty category title. Please try again')
-                empty_name_message.setWindowTitle("Error")
-                empty_name_message.exec_()
+                ErrorMessage("Empty input", 'You wrote empty category title. Please try again')
             else:
                 self.category_button_options(QPushButton(text))
                 self.init_categories()
@@ -328,6 +324,7 @@ class WindowInteractivity(MainWindow):
     def rename_category(self):
         previous_title = self.buttonCalledAction.text()
         if previous_title in ['All', 'Favourites']:
+            WarningMessage("Can not rename this category", "This is basic category")
             logging.info("Can not change this category title")
             return
 
@@ -344,6 +341,7 @@ class WindowInteractivity(MainWindow):
     def delete_category(self):
         previous_title = self.buttonCalledAction.text()
         if previous_title in ['All', 'Favourites']:
+            ErrorMessage('Can not delete this category!', 'This category is a basic one.')
             logging.info("Can not delete this category")
             return
 
