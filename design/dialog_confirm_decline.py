@@ -8,20 +8,26 @@ import sys
 class ConfirmDialog(QDialog):
     def __init__(self):
         super().__init__()
-        
-        #craete the placeholder for
-        self.dialogBackgroundVLayout = QVBoxLayout() #all widgets and layours
-        self.buttonHLayout = QHBoxLayout() #buttons
-        
-        self.changeStyle()
 
+        # create the placeholder for
+        # all widgets and layouts
+        self.dialogBackgroundVLayout = QVBoxLayout()
+        # buttons
+        self.buttonHLayout = QHBoxLayout()
+        # label with warning text
+        self.warningLabel = QLabel("Do you want to delete file?")
+        # create buttons
+        self.acceptButton = QPushButton("Yes!")
+        self.declineButton = QPushButton("No")
+
+        self.change_style()
         self.layout_init()
         self.buttons_init()
 
         self.setLayout(self.dialogBackgroundVLayout)
-    
-    def changeStyle(self):
-        self.setWindowTitle('Deleting file')
+
+    def change_style(self):
+        self.setWindowTitle('Deleting')
         self.setWindowIcon(QIcon('images/removeBook.ico'))
         self.setFixedSize(300, 100)
         self.setStyleSheet('''
@@ -57,23 +63,19 @@ class ConfirmDialog(QDialog):
             )
 
     def buttons_init(self):
-        #create buttons
-        self.acceptButton = QPushButton("Yes!")
-        self.declineButton = QPushButton("No")
-
-        #bind them to closing files function
+        # bind them to closing files function
         self.declineButton.clicked.connect(lambda: self.done(0))
         self.acceptButton.clicked.connect(lambda: self.done(1))
 
-        #add buttons to layout
+        # add buttons to layout
         self.buttonHLayout.addWidget(self.acceptButton)
         self.buttonHLayout.addWidget(self.declineButton)
 
     def layout_init(self):
-        self.warningLable = QLabel("Are you really want to delete file?")
         self.warningLable.setAlignment(Qt.AlignHCenter|Qt.AlignCenter)
         self.dialogBackgroundVLayout.addWidget(self.warningLable)
         self.dialogBackgroundVLayout.addLayout(self.buttonHLayout)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
