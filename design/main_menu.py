@@ -263,7 +263,7 @@ class WindowInteractivity(MainWindow):
         self.addBookQButton.clicked.connect(self.open_files)
         self.removeBookQButton.clicked.connect(self.delete_files)
 
-        self.open_act.triggered.connect(lambda: print('Open'))
+        self.open_act.triggered.connect(self.open_category)
         self.edit_act.triggered.connect(self.rename_category)
         self.delete_act.triggered.connect(self.delete_category)
         # drag and drop
@@ -356,6 +356,9 @@ class WindowInteractivity(MainWindow):
         else:
             logging.info(f'Declined removing the category {self.buttonCalledAction.text()}')
         self.deleteDialog.warningLabel.setText('Do you want to delete file?')
+
+    def open_category(self):
+        self.categoryQLabel.setText(self.buttonCalledAction.text())
 
 
 if __name__ == '__main__':
