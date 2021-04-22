@@ -59,8 +59,7 @@ class ConfirmDialog(QDialog):
                 }
                 
         """
-        '''
-            )
+        ''')
 
     def buttons_init(self):
         # bind them to closing files function
@@ -72,8 +71,8 @@ class ConfirmDialog(QDialog):
         self.buttonHLayout.addWidget(self.declineButton)
 
     def layout_init(self):
-        self.warningLable.setAlignment(Qt.AlignHCenter|Qt.AlignCenter)
-        self.dialogBackgroundVLayout.addWidget(self.warningLable)
+        self.warningLabel.setAlignment(Qt.AlignHCenter | Qt.AlignCenter)
+        self.dialogBackgroundVLayout.addWidget(self.warningLabel)
         self.dialogBackgroundVLayout.addLayout(self.buttonHLayout)
 
 
