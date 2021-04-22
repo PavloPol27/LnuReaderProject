@@ -59,3 +59,12 @@ Called from:delete_category, Can not delete this category, time: 2021-04-22 11:3
 Called from:delete_category, Removed the category agawg, time: 2021-04-22 11:35:35,511
 Called from:rename_category, Renamed category fwaga to Normal Name, time: 2021-04-22 11:43:49,784
 Called from:delete_category, Removed the category Normal Name, time: 2021-04-22 11:43:52,706
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:51:29,336
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:52:22,640
+Called from:delete_category, Removed the category אפאפצ, time: 2021-04-22 11:52:30,521
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:52:33,620
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:54:48,136
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:54:50,606
+Called from:delete_category, Can not delete this category, time: 2021-04-22 12:06:25,372
+Called from:delete_category, Can not delete this category, time: 2021-04-22 12:06:27,436
+Called from:rename_category, Can not change this category title, time: 2021-04-22 12:07:11,234

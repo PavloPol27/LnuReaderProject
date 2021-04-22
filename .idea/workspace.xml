@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added functionality for removing category button.">
+    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Implement messages classes.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/design/ReaderLogger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +136,42 @@
       <option name="project" value="LOCAL" />
       <updated>1619080604226</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added functionality for &quot;Open&quot; menu action.">
+      <created>1619081069903</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619081069903</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Technical commit.">
+      <created>1619081106139</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619081106139</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Created ErrorMessage class.">
+      <created>1619082223958</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619082223958</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Created WarningMessage class.">
+      <created>1619082313055</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619082313055</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implement messages classes.">
+      <created>1619082660805</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619082660805</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +221,11 @@
     <MESSAGE value="Added renaming of categories." />
     <MESSAGE value="Renamed variables and changed text on label." />
     <MESSAGE value="Added functionality for removing category button." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for removing category button." />
+    <MESSAGE value="Added functionality for &quot;Open&quot; menu action." />
+    <MESSAGE value="Technical commit." />
+    <MESSAGE value="Created ErrorMessage class." />
+    <MESSAGE value="Created WarningMessage class." />
+    <MESSAGE value="Implement messages classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement messages classes." />
   </component>
 </project>
