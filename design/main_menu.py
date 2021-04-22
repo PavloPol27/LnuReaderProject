@@ -347,9 +347,16 @@ class WindowInteractivity(MainWindow):
             logging.info("Can not delete this category")
             return
 
-        self.deleteDialog.warningLable.setText('Do you want to delete category?')
+        self.deleteDialog.warningLabel.setText('Do you want to delete category?')
         ok = self.deleteDialog.exec_()
-        print('ok') if ok else print('not ok')
+        if ok:
+            self.categories.remove(self.buttonCalledAction)
+            self.categoriesQVBoxLayout.removeWidget(self.buttonCalledAction)
+            logging.info(f'Removed the category {self.buttonCalledAction.text()}')
+        else:
+            logging.info(f'Declined removing the category {self.buttonCalledAction.text()}')
+        self.deleteDialog.warningLabel.setText('Do you want to delete file?')
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
