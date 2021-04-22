@@ -20,6 +20,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # needed variable
+        self.buttonCalledAction = None
+
         # Set main window options
         self.setWindowTitle('LNU Reader')
         self.setWindowIcon(QIcon('images/icon.ico'))
@@ -228,8 +231,8 @@ class MainWindow(QMainWindow):
         self.categoryQLabel.setText(button.text())
 
     def on_context_menu(self, point):
-        button = self.sender()
-        self.context_menu.exec_(button.mapToGlobal(point))
+        self.buttonCalledAction = self.sender()
+        self.context_menu.exec_(self.buttonCalledAction.mapToGlobal(point))
 
     def settings_button_clicked(self):
         if self.sett_menu is None:
@@ -256,11 +259,17 @@ class WindowInteractivity(MainWindow):
         QShortcut("Ctrl+O", self).activated.connect(self.open_files)
         QShortcut("Del", self).activated.connect(self.delete_files)
         QShortcut("Ctrl+A", self).activated.connect(lambda: self.table.selectAll())
+
         self.addBookQButton.clicked.connect(self.open_files)
         self.removeBookQButton.clicked.connect(self.delete_files)
+
+        self.open_act.triggered.connect(lambda: print('Open'))
+        self.edit_act.triggered.connect(self.rename_category)
+        self.delete_act.triggered.connect(self.delete_category)
         # drag and drop
         self.setAcceptDrops(True)
         self.table.clicked.connect(lambda index: self.table.selectRow(index.row()))
+
 
     def select_col(self, index):
         self.table.selectRow(index.row())
@@ -316,6 +325,31 @@ class WindowInteractivity(MainWindow):
         self.table.removeRow(r)
         logging.info(f"Deleted item in table with row = {r}, column = {c}")
 
+    def rename_category(self):
+        previous_title = self.buttonCalledAction.text()
+        if previous_title in ['All', 'Favourites']:
+            logging.info("Can not change this category title")
+            return
+
+        self.categoryQDialog.setWindowTitle('Rename')
+        ok = self.categoryQDialog.exec_()
+        text = self.categoryQDialog.textValue()
+        if ok:
+            self.buttonCalledAction.setText(text)
+            logging.info(f"Renamed category {previous_title} to {text}")
+        else:
+            logging.info(f"Renaming category {previous_title} was declined")
+        self.categoryQDialog.setWindowTitle('Create new category')
+
+    def delete_category(self):
+        previous_title = self.buttonCalledAction.text()
+        if previous_title in ['All', 'Favourites']:
+            logging.info("Can not delete this category")
+            return
+
+        self.deleteDialog.warningLable.setText('Do you want to delete category?')
+        ok = self.deleteDialog.exec_()
+        print('ok') if ok else print('not ok')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
