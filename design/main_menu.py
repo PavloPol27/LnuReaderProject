@@ -253,7 +253,6 @@ class WindowInteractivity(MainWindow):
 # ------------------Open File--------------------------
 # ------------------------------------------------------
         QShortcut("Ctrl+O", self).activated.connect(self.open_files)
-        QShortcut("Del", self).activated.connect(self.delete_files)
         QShortcut("Ctrl+A", self).activated.connect(lambda: self.table.selectAll())
 
         self.addBookQButton.clicked.connect(self.open_files)
@@ -265,7 +264,6 @@ class WindowInteractivity(MainWindow):
         # drag and drop
         self.setAcceptDrops(True)
         self.table.clicked.connect(lambda index: self.table.selectRow(index.row()))
-
 
     def select_col(self, index):
         self.table.selectRow(index.row())
@@ -365,12 +363,17 @@ class WindowInteractivity(MainWindow):
             self.chose_row(1)
         if event.key() == Qt.Key_Up:
             self.chose_row(-1)
+        if event.key() == Qt.Key_Delete:
+            self.delete_files()
+
+
 
     def chose_row(self, i=1):
         if i not in [1, -1]:
             return
         row = self.table.currentRow()
         self.table.selectRow(row+i)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
