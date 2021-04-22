@@ -28,3 +28,34 @@ Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 20
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 13:32:23,257
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 13:32:23,257
 Called from:deleteFile, Deleted item in table with row = 0, column = 0, time: 2021-04-21 13:32:23,257
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 20:40:52,736
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 20:40:52,736
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 20:40:52,736
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 20:40:52,736
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 20:40:52,736
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 22:12:12,581
+Called from:delete_file, Deleted item in table with row = 3, column = 0, time: 2021-04-21 22:12:12,582
+Called from:delete_file, Deleted item in table with row = 4, column = 0, time: 2021-04-21 22:12:15,138
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:09:02,493
+Called from:rename_category, Renamed category Favourites to ‚ˆÙ‡ˆÔ, time: 2021-04-22 10:09:07,089
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:09:32,634
+Called from:rename_category, Renamed category All to Add, time: 2021-04-22 10:09:37,055
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:09:48,719
+Called from:rename_category, Renamed category Favourites to wafff, time: 2021-04-22 10:09:51,213
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:10:34,373
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:10:35,962
+Called from:rename_category, Can not change this category title, time: 2021-04-22 10:10:37,450
+Called from:rename_category, Renamed category Data to MyCategory, time: 2021-04-22 10:10:52,444
+Called from:rename_category, Renaming category MyCategory was declined, time: 2021-04-22 10:11:02,769
+Called from:delete_category, Can not delete this category, time: 2021-04-22 10:14:15,413
+Called from:delete_category, Can not delete this category, time: 2021-04-22 10:14:17,666
+Called from:delete_category, Can not delete this category, time: 2021-04-22 10:23:51,043
+Called from:rename_category, Renamed category adwa to fwaf, time: 2021-04-22 10:23:58,113
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:15:10,865
+Called from:rename_category, Can not change this category title, time: 2021-04-22 11:15:14,457
+Called from:rename_category, Renamed category vaeg to wfawf, time: 2021-04-22 11:28:31,402
+Called from:delete_file, Deleted item in table with row = 2, column = 0, time: 2021-04-22 11:29:11,375
+Called from:delete_category, Can not delete this category, time: 2021-04-22 11:34:10,352
+Called from:delete_category, Removed the category agawg, time: 2021-04-22 11:35:35,511
+Called from:rename_category, Renamed category fwaga to Normal Name, time: 2021-04-22 11:43:49,784
+Called from:delete_category, Removed the category Normal Name, time: 2021-04-22 11:43:52,706
