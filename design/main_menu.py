@@ -11,7 +11,6 @@ import localize
 import styles
 import settings_menu
 import logging
-from functools import partial
 logging.basicConfig(filename='ReaderLogger.log',
                     level=logging.INFO,
                     format='Called from:%(funcName)s, %(message)s, time: %(asctime)s')
@@ -245,28 +244,41 @@ class MainWindow(QMainWindow):
 class WindowInteractivity(MainWindow):
     def __init__(self):
         super().__init__()
+        # create needed variable
         self.acceptableFormats = ['.pdf', '.epub', '.fb2']
+        # TODO:
+        # replace this list with database
         self.filesDirectories = []
         self.deleteDialog = ConfirmDialog()
 
-# ------------------------------------------------------
-# ------------------Open File--------------------------
-# ------------------------------------------------------
+        # creating shortcuts
         QShortcut("Ctrl+O", self).activated.connect(self.open_files)
         QShortcut("Ctrl+A", self).activated.connect(lambda: self.table.selectAll())
 
+        # bind buttons to functions
         self.addBookQButton.clicked.connect(self.open_files)
         self.removeBookQButton.clicked.connect(self.delete_files)
 
+        # bind actions to functions
         self.open_act.triggered.connect(self.open_category)
         self.edit_act.triggered.connect(self.rename_category)
         self.delete_act.triggered.connect(self.delete_category)
-        # drag and drop
+
+        # drag and drop settings
         self.setAcceptDrops(True)
+
+        # binding table to functions
         self.table.clicked.connect(lambda index: self.table.selectRow(index.row()))
 
-    def select_col(self, index):
-        self.table.selectRow(index.row())
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()
+        if event.key() == Qt.Key_Down:
+            self.chose_row(1)
+        if event.key() == Qt.Key_Up:
+            self.chose_row(-1)
+        if event.key() == Qt.Key_Delete:
+            self.delete_files()
 
     def dragEnterEvent(self, event):
         url = str(event.mimeData().urls()[0])
@@ -304,9 +316,6 @@ class WindowInteractivity(MainWindow):
             else:
                 logging.info(f"Directory {directory} was ignored.")
 
-# ------------------------------------------------------
-# ------------------Delete File------------------------
-# ------------------------------------------------------
     def delete_files(self):
         if len(self.table.selectedItems()) == 0:
             WarningMessage("No file selected", "Can not delete not selected file")
@@ -358,18 +367,6 @@ class WindowInteractivity(MainWindow):
 
     def open_category(self):
         self.categoryQLabel.setText(self.buttonCalledAction.text())
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
-            self.close()
-        if event.key() == Qt.Key_Down:
-            self.chose_row(1)
-        if event.key() == Qt.Key_Up:
-            self.chose_row(-1)
-        if event.key() == Qt.Key_Delete:
-            self.delete_files()
-
-
 
     def chose_row(self, i=1):
         if i not in [1, -1]:
