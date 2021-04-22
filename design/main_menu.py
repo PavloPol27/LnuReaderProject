@@ -317,10 +317,10 @@ class WindowInteractivity(MainWindow):
         
     def delete_file(self, r, c):
         if c != 0:
-            logging.info(f"Deleting from table is declined for item row = {r}, column = {c}")
+            logging.info(f"Deleting from table is declined for item row = {r}")
             return
         self.table.removeRow(r)
-        logging.info(f"Deleted item in table with row = {r}, column = {c}")
+        logging.info(f"Deleted item in table with row = {r}")
 
     def rename_category(self):
         previous_title = self.buttonCalledAction.text()
