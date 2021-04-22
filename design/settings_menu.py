@@ -10,7 +10,6 @@ import styles
 import main_menu
 
 
-
 class SettingsWindow(QMainWindow):
     def __init__(self):
         super().__init__()

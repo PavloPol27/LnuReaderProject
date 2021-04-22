@@ -68,3 +68,5 @@ Called from:delete_category, Can not delete this category, time: 2021-04-22 11:5
 Called from:delete_category, Can not delete this category, time: 2021-04-22 12:06:25,372
 Called from:delete_category, Can not delete this category, time: 2021-04-22 12:06:27,436
 Called from:rename_category, Can not change this category title, time: 2021-04-22 12:07:11,234
+Called from:delete_category, Removed the category ןפצןפצ, time: 2021-04-22 12:14:43,350
+Called from:delete_category, Removed the category watw, time: 2021-04-22 12:14:48,383

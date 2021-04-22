@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
 
+
 class ErrorMessage(QMessageBox):
     def __init__(self, text='', info=''):
         super().__init__()

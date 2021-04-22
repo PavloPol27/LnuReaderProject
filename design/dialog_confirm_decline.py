@@ -4,7 +4,6 @@ from PyQt5.QtCore import Qt
 import sys
 
 
-
 class ConfirmDialog(QDialog):
     def __init__(self):
         super().__init__()
