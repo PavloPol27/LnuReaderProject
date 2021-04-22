@@ -308,6 +308,9 @@ class WindowInteractivity(MainWindow):
 # ------------------Delete File------------------------
 # ------------------------------------------------------
     def delete_files(self):
+        if len(self.table.selectedItems()) == 0:
+            WarningMessage("No file selected", "Can not delete not selected file")
+            return
         if self.deleteDialog.exec_():
             for index in self.table.selectedItems():
                 self.delete_file(index.row(), index.column())
