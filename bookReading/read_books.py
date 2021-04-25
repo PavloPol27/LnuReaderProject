@@ -31,3 +31,13 @@ def show_page(doc: Document, page_num=0):
     load_page = doc.loadPage(page_num)
     page = load_page.getText('html')
     return str(page)
+
+def parse_metadata(doc: Document):
+    """
+    This function allows you to parse metadata from document and reconstruct it.
+
+    :doc: Document with all pages.
+    """
+    all_data = doc.metadata
+    return all_data['title'],all_data['author'],doc.page_count
+    #TODO RATING AND ADDING TIME
