@@ -213,6 +213,9 @@ class MainWindow(QMainWindow):
         if ok:
             if text.isspace() or not text:
                 ErrorMessage("Empty input", 'You wrote empty category title. Please try again')
+            if text in [button.text() for button in self.categories]:
+                WarningMessage("Category is already exists", "You are bustard")
+                return
             else:
                 self.category_button_options(QPushButton(text))
                 db.insert_data(self.db_connection, "library", (text, ))
