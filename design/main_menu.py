@@ -217,7 +217,6 @@ class MainWindow(QMainWindow):
         category_button.setContextMenuPolicy(Qt.CustomContextMenu)
         category_button.customContextMenuRequested.connect(self.on_context_menu)
         self.categories.append(category_button)
-
         category_button.clicked.connect(self.category_button_clicked)
 
     def category_button_clicked(self):
