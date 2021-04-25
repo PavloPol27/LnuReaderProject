@@ -11,6 +11,8 @@ import localize
 import styles
 import settings_menu
 import logging
+from bookReading.read_books import read_book, show_page
+
 logging.basicConfig(filename='ReaderLogger.log',
                     level=logging.INFO,
                     format='Called from:%(funcName)s, %(message)s, time: %(asctime)s')
@@ -333,7 +335,7 @@ class WindowInteractivity(MainWindow):
 
     def rename_category(self):
         previous_title = self.buttonCalledAction.text()
-        if previous_title in ['All', 'Favourites']:
+        if previous_title in [button.text() for button in self.categories[:2]]:
             WarningMessage("Can not rename this category", "This is basic category")
             logging.info("Can not change this category title")
             return
@@ -342,6 +344,8 @@ class WindowInteractivity(MainWindow):
         ok = self.categoryQDialog.exec_()
         text = self.categoryQDialog.textValue()
         if ok:
+            if self.categoryQLabel.text() == self.buttonCalledAction.text():
+                self.categoryQLabel.setText(text)
             self.buttonCalledAction.setText(text)
             logging.info(f"Renamed category {previous_title} to {text}")
         else:
@@ -350,7 +354,7 @@ class WindowInteractivity(MainWindow):
 
     def delete_category(self):
         previous_title = self.buttonCalledAction.text()
-        if previous_title in ['All', 'Favourites']:
+        if previous_title in [button.text() for button in self.categories[:2]]:
             ErrorMessage('Can not delete this category!', 'This category is a basic one.')
             logging.info("Can not delete this category")
             return

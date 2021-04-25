@@ -106,3 +106,26 @@ Called from:delete_file, Deleted item in table with row = 0, time: 2021-04-22 16
 Called from:delete_file, Deleted item in table with row = 0, time: 2021-04-22 16:22:55,925
 Called from:delete_file, Deleted item in table with row = 0, time: 2021-04-22 16:22:55,925
 Called from:delete_file, Deleted item in table with row = 0, time: 2021-04-22 16:22:55,925
+Called from:delete_file, Deleted item in table with row = 3, time: 2021-04-22 16:32:26,521
+Called from:rename_category, Can not change this category title, time: 2021-04-22 16:32:31,623
+Called from:delete_category, Removed the category сфцаЦФ, time: 2021-04-22 16:32:36,293
+Called from:add_file, Directory C:/Users/User_pc/Downloads/Grammarway4 (with Answers)_Jenny Dooley & Virginia Evans (2).pdf was added to list., time: 2021-04-22 16:42:29,462
+Called from:add_file, Directory C:/Users/User_pc/Downloads/Рассказ Чук и Гек скачать PDF.pdf was added to list., time: 2021-04-22 16:43:48,357
+Called from:add_file, Directory C:/Users/User_pc/Downloads/Рассказ Чук и Гек скачать PDF.pdf was added to list., time: 2021-04-22 16:44:08,819
+Called from:add_file, Directory C:/Users/User_pc/Downloads/Рассказ Чук и Гек скачать PDF.pdf was added to list., time: 2021-04-22 16:45:36,826
+Called from:add_file, Directory C:/Users/User_pc/Downloads/Лекція 7. Динамічні системи на площині.pdf was added to list., time: 2021-04-22 16:45:40,652
+Called from:delete_file, Deleted item in table with row = 4, time: 2021-04-25 14:38:50,683
+Called from:delete_file, Deleted item in table with row = 4, time: 2021-04-25 14:38:50,707
+Called from:delete_file, Deleted item in table with row = 4, time: 2021-04-25 14:38:50,707
+Called from:delete_file, Deleted item in table with row = 4, time: 2021-04-25 14:38:50,707
+Called from:rename_category, Renamed category gaga to fawfaw, time: 2021-04-25 14:48:39,260
+Called from:rename_category, Can not change this category title, time: 2021-04-25 14:53:30,897
+Called from:rename_category, Can not change this category title, time: 2021-04-25 14:53:37,326
+Called from:rename_category, Renamed category Database to fwafa, time: 2021-04-25 14:53:45,186
+Called from:delete_category, Removed the category fwafa, time: 2021-04-25 14:53:52,550
+Called from:rename_category, Renamed category wff to asfaf, time: 2021-04-25 14:55:28,353
+Called from:rename_category, Renamed category svSv to ascasv, time: 2021-04-25 14:56:22,948
+Called from:rename_category, Renamed category gaga to wfawfa, time: 2021-04-25 14:59:38,815
+Called from:rename_category, Renamed category wfawfa to gaewgwgf, time: 2021-04-25 14:59:45,503
+Called from:rename_category, Renamed category 123 to 1344, time: 2021-04-25 15:00:07,122
+Called from:rename_category, Renamed category 123 to gqgt, time: 2021-04-25 15:00:15,960

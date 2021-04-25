@@ -1,4 +1,4 @@
-from resources.fitz import Document
+from fitz import Document
 
 
 def read_book(file):
@@ -11,7 +11,7 @@ def read_book(file):
     if file.endswith('.pdf') or file.endswith('.epub') or file.endswith('.fb2'):
         return Document(file)
     else:
-        # DOTO write normal Exception
+        # TODO write normal Exception
         raise Exception("Wrong file format")
 
 
