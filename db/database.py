@@ -11,6 +11,7 @@ def create_connection(db_file):
         conn = connect(db_file)
     except Error as e:
         raise e
+    conn.execute("PRAGMA foreign_keys=ON")
     return conn
 
 
@@ -38,8 +39,7 @@ def create_db(connection: Connection):
         raise TypeError("Parameter 'connection' must be SQLite Connection object")
     cursor = connection.cursor()
     sql_create_library_table = """  CREATE TABLE IF NOT EXISTS library(
-                                        library_id integer PRIMARY KEY AUTOINCREMENT,
-                                        library_name varchar(50)
+                                        library_name varchar(50) PRIMARY KEY
                                     );"""
 
     sql_create_book_table = """     CREATE TABLE IF NOT EXISTS book(
@@ -48,13 +48,14 @@ def create_db(connection: Connection):
                                         author varchar(50),
                                         added Date,
                                         file_stopped_page integer CHECK (file_stopped_page >= 0) DEFAULT 0,
-                                        rating integer CHECK (rating >= 0 AND rating <= 10) DEFAULT 0
+                                        rating integer CHECK (rating >= 0 AND rating <= 10) DEFAULT 0,
+                                        favourite bool DEFAULT false
                                     );"""
 
     sql_create_book_lib_table = """  CREATE TABLE IF NOT EXISTS books_in_libraries(
                                         link_id integer PRIMARY KEY AUTOINCREMENT,
-                                        library_id integer REFERENCES library,
-                                        file_path text REFERENCES book
+                                        library_name varchar(50) REFERENCES library(library_name) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        file_path text REFERENCES book ON DELETE CASCADE ON UPDATE CASCADE
                                     );"""
 
     sql_create_note_table = """      CREATE TABLE IF NOT EXISTS note(
@@ -62,13 +63,13 @@ def create_db(connection: Connection):
                                         note_text text,
                                         note_page integer CHECK (note_page >= 0),
                                         note_line integer,
-                                        note_book_path text REFERENCES book
+                                        note_book_path text REFERENCES book ON DELETE CASCADE ON UPDATE CASCADE
                                     );"""
 
     sql_create_bookmark_table = """ CREATE TABLE IF NOT EXISTS bookmark(
                                         bookmark_id integer PRIMARY KEY AUTOINCREMENT,
                                         bookmark_page integer CHECK (bookmark_page >= 0),
-                                        bookmark_book_path text REFERENCES book
+                                        bookmark_book_path text REFERENCES book ON DELETE CASCADE ON UPDATE CASCADE
                                     );"""
 
     create_table(cursor, sql_create_library_table)
@@ -172,15 +173,18 @@ def insert_data(connection: Connection, table_name, row: tuple):
     connection.commit()
 
 
-def update_data(connection: Connection, table_name, data, key):
+def update_data(connection: Connection, table_name, column_name, data, key):
     """Update data in table by specified key.
     You can update data only in Library, Book, Note tables.
-    In Library you can update name
-    In Book you can update name
-    In Note you can update text of the note
+    In Library you can update library_name
+    In Book you can update file_name, file_stopped_page, rating and favourite
+    In Note you can update note_text
+    Trying to update any other field is not forbidden,
+    but it is hightly unrecommended.
 
     :param connection: SQLite Connection object
     :param table_name: Name of table
+    :param column_name: Name of the column to change value
     :param data: New data
     :param key: Key value of needed row
     :return: None
@@ -188,9 +192,9 @@ def update_data(connection: Connection, table_name, data, key):
     if not isinstance(connection, Connection):
         raise TypeError("Parameter 'connection' must be SQLite Connection object")
     cursor = connection.cursor()
-    col_names = select_col_names(connection, table_name)
+    key_row_name = select_col_names(connection, table_name)[0]
     try:
-        cursor.execute(f"UPDATE {table_name} SET {col_names[1]} = ? WHERE {col_names[0]} = ?", [data, key])
+        cursor.execute(f"UPDATE {table_name} SET {column_name} = ? WHERE {key_row_name} = ?", [data, key])
     except Error as e:
         raise e
     connection.commit()
@@ -212,3 +216,21 @@ def delete_data(connection: Connection, table_name, key):
     except Error as e:
         raise e
     connection.commit()
+
+
+def select_books(connection: Connection, library_name):
+    """Return list of paths to books in chosen library.
+    Incorrect library_name and empty library both result with empty list.
+
+    :param connection: SQLite Connection object
+    :param library_name: Name of library created by user
+    :return: list
+    """
+    if not isinstance(connection, Connection):
+        raise TypeError("Parameter 'connection' must be SQLite Connection object")
+    cursor = connection.cursor()
+    try:
+        cursor.execute(f"SELECT file_path FROM books_in_libraries WHERE library_name = ?", [library_name])
+    except Error as e:
+        raise e
+    return cursor.fetchall()

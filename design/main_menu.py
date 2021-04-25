@@ -6,6 +6,7 @@ from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
 from PyQt5.QtCore import QSize, Qt
 from dialog_confirm_decline import ConfirmDialog
 from messages import ErrorMessage, WarningMessage
+import db.database as db
 import sys
 import localize
 import styles
@@ -23,6 +24,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         # needed variable
+        self.db_connection = db.create_connection("%userprofile%/documents/LNUReader/ReaderDatabase.db")
         self.buttonCalledAction = None
 
         # Set main window options
@@ -101,8 +103,7 @@ class MainWindow(QMainWindow):
         self.categories = []
         self.allQButton = QPushButton()
         self.favouritesQButton = QPushButton()
-        self.category_button_options(self.allQButton)
-        self.category_button_options(self.favouritesQButton)
+        self.init_categories()
 
         # Create Category Button
         self.createCategoryQButton = QPushButton()
@@ -151,6 +152,11 @@ class MainWindow(QMainWindow):
         self.header.setLayout(self.headerQHBoxLayout)
 
     def init_categories(self):
+        self.category_button_options(self.allQButton)
+        self.category_button_options(self.favouritesQButton)
+        user_categories = db.select_all_data(self.db_connection, "library")["library_name"]
+        for ctg in user_categories:
+            self.category_button_options(QPushButton(ctg))
         for ctg in self.categories:
             ctg.setFocusPolicy(Qt.ClickFocus)
             self.categoriesQVBoxLayout.addWidget(ctg)
@@ -209,6 +215,7 @@ class MainWindow(QMainWindow):
                 ErrorMessage("Empty input", 'You wrote empty category title. Please try again')
             else:
                 self.category_button_options(QPushButton(text))
+                db.insert_data(self.db_connection, "library", (text, ))
                 self.init_categories()
 
     def category_button_options(self, category_button):
@@ -247,8 +254,6 @@ class WindowInteractivity(MainWindow):
         super().__init__()
         # create needed variable
         self.acceptableFormats = ['.pdf', '.epub', '.fb2']
-        # TODO:
-        # replace this list with database
         self.filesDirectories = []
         self.deleteDialog = ConfirmDialog()
 
@@ -343,6 +348,7 @@ class WindowInteractivity(MainWindow):
         ok = self.categoryQDialog.exec_()
         text = self.categoryQDialog.textValue()
         if ok:
+            db.update_data(self.db_connection, "library", "library_name", text, self.buttonCalledAction.text())
             if self.categoryQLabel.text() == self.buttonCalledAction.text():
                 self.categoryQLabel.setText(text)
             self.buttonCalledAction.setText(text)
@@ -363,6 +369,7 @@ class WindowInteractivity(MainWindow):
         if ok:
             self.categories.remove(self.buttonCalledAction)
             self.categoriesQVBoxLayout.removeWidget(self.buttonCalledAction)
+            db.delete_data(self.db_connection, "library", self.buttonCalledAction.text())
             logging.info(f'Removed the category {self.buttonCalledAction.text()}')
         else:
             logging.info(f'Declined removing the category {self.buttonCalledAction.text()}')

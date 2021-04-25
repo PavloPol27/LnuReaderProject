@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added comments and removed unnecessary functions.">
+    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Implement messages classes.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookReading/read_books.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookReading/read_books.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/design/ReaderLogger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/language.json" beforeDir="false" afterPath="$PROJECT_DIR$/design/language.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -31,9 +34,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/PyCharmCE2021.1/python_stubs/-727401014/PyQt5/QtWidgets/QWidget.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1rUMuRiZvfXlge2BWDgWYCBo8DM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
