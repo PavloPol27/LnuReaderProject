@@ -98,19 +98,6 @@ class Styles:
                 font-size: 30px;
                 padding-top:0;
                 """)
-
-        window.context_menu.setStyleSheet("""
-        QMenu
-        {
-        background-color: beige;
-        color: #5c5c5c;
-        }
-        QMenu::item:selected
-        {
-        background-color: lightgrey;
-        color: black;
-        }
-        """)
         # Categories styles
         window.categoriesQWidget.setStyleSheet("""
                 border-bottom: 0;
@@ -207,6 +194,29 @@ class Styles:
         """)
 
     @staticmethod
+    def set_context_menu_styles(context_menu):
+        context_menu.setStyleSheet("""
+        QMenu
+        {
+        background-color: beige;
+        color: #5c5c5c;
+        }
+        QMenu::item:selected
+        {
+        background-color: lightgrey;
+        color: black;
+        }
+        QMenu::item:disabled
+        {
+        color: darkgray;
+        }
+        QMenu::item:disabled:hover
+        {
+        background-color: #f5f5f5;
+        }
+        """)
+
+    @staticmethod
     def set_clicked_category_button_styles(category_button):
         category_button.setStyleSheet("""  
                     QPushButton
@@ -240,6 +250,16 @@ class Styles:
                 background-color : #6938fb;
                 }
                 """)
+
+    @staticmethod
+    def set_message_style(message):
+        message.setStyleSheet("""
+        QMessageBox
+        {
+        background-color: beige;
+        color: #5c5c5c;
+        }
+        """)
 
     @staticmethod
     def set_settings_styles(window):
