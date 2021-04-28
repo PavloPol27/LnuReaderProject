@@ -1,5 +1,6 @@
 from main_menu_front import *
 import settings_menu
+import json
 
 
 class WindowInteractivity(MainWindow):
@@ -53,9 +54,9 @@ class WindowInteractivity(MainWindow):
         """
         if self.is_create_dialog_error(category_name):
             return
-        db.insert_data(self.db_connection, "library", (category_name,))
-        added_button = QPushButton(text)
+        added_button = QPushButton(category_name)
         self.set_category_button_options(added_button)
+        db.insert_data(self.db_connection, "library", (category_name,))
         self.categoriesQVBoxLayout.addWidget(added_button)
         self.categoriesQWidget.setLayout(self.categoriesQVBoxLayout)
 
@@ -80,8 +81,22 @@ class WindowInteractivity(MainWindow):
         """
         if self.sett_menu is None:
             self.sett_menu = settings_menu.SettingsWindow()
+
+        self.remember_window_size()
+
+        self.sett_menu.set_size()
         self.sett_menu.show()
         self.close()
+
+    def remember_window_size(self):
+        with open('settings.json') as json_file:
+            lg_info = json.load(json_file)
+        lg_info["screen"] = self.get_window_size()
+        with open('settings.json', 'w') as outfile:
+            json.dump(lg_info, outfile)
+
+    def get_window_size(self):
+        return self.size().width(), self.size().height()
 
     def mousePressEvent(self, a0: QMouseEvent) -> None:
         """
@@ -170,12 +185,16 @@ class WindowInteractivity(MainWindow):
 
     def delete_files(self):
         # TODO Documentation
-        if len(self.table.selectedItems()) == 0:
-            WarningMessage("No file selected", "Can not delete not selected file")
+        try:
+            if len(self.table.selectedItems()) == 0:
+                WarningMessage("No file selected", "Can not delete not selected file")
+                return
+            if self.deleteDialog.exec_():
+                for index in self.table.selectedItems():
+                    self.delete_book_from_table(index.row(), index.column())
+        except Exception as e:
+            print(e)
             return
-        if self.deleteDialog.exec_():
-            for index in self.table.selectedItems():
-                self.delete_book_from_table(index.row(), index.column())
 
     def delete_book_from_table(self, r, c):
         # TODO Documentation

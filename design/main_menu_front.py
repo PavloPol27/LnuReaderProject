@@ -12,8 +12,7 @@ import localize
 import styles
 import logging
 import os
-
-from bookReading.read_books import read_book, show_page
+import json
 
 logging.basicConfig(filename='ReaderLogger.log',
                     level=logging.INFO,
@@ -35,10 +34,8 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('images/icon.ico'))
 
         # Set the size of window
-        self.width = 1200
-        self.height = int(0.618 * self.width)
-        self.resize(self.width, self.height)
         self.setMinimumSize(900, 500)
+        self.resize(1200, int(0.618 * 1200))
 
         # Main body
         self.bodyQVBoxLayout = QVBoxLayout()
@@ -144,6 +141,11 @@ class MainWindow(QMainWindow):
         # Settings window
         self.sett_menu = None
 
+    def set_size(self):
+        with open('settings.json') as json_file:
+            lg_info = json.load(json_file)
+        self.resize(lg_info["screen"][0], lg_info["screen"][1])
+
     @staticmethod
     def connect_to_db():
         path_to_db = r'C:\Users\Max\Documents\LNUReader'
@@ -182,7 +184,9 @@ class MainWindow(QMainWindow):
     def init_table(self):
         header = self.table.horizontalHeader()
         self.table.verticalHeader().setVisible(False)
+        self.table.setShowGrid(False)
         header.setSectionResizeMode(QHeaderView.Fixed)
+        header.setHighlightSections(False)
         header.setSectionResizeMode(0, QHeaderView.Stretch)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
         header.resizeSection(2, 120)
@@ -190,9 +194,10 @@ class MainWindow(QMainWindow):
         header.resizeSection(4, 80)
         header.resizeSection(5, 50)
 
-        # for i in range(30):
-        #     self.table.insertRow(i)
-        #     self.table.setItem(i, 0, QTableWidgetItem(f'text{i}'))
+        for i in range(30):
+            self.table.insertRow(i)
+            self.table.setItem(i, 0, QTableWidgetItem(f'text{i}'))
+            self.table.setItem(i, 1, QTableWidgetItem(f'author{i}'))
 
     def init_content(self):
         self.init_table()

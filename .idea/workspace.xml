@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added comments and rewrite some methods. Refactored code." />
+    <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added comments and rewrite some methods. Refactored code.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/design/ReaderLogger.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/language.json" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/localize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_menu_front.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu_front.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/styles.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +53,11 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Написані програми\Python\BookReaderProject\design" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design" />
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\settings menu" />
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main menu" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.dialog_confirm_decline">
     <configuration name="dialog_confirm_decline" type="PythonConfigurationType" factoryName="Python">
@@ -58,7 +72,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/design/main_menu.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main_menu.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

@@ -1,12 +1,11 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayout,\
-    QHBoxLayout, QApplication, QInputDialog, QTableWidget, QHeaderView, \
-    QTableWidgetItem, QLineEdit, QScrollBar, QAbstractItemView, QMessageBox
-from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
+    QHBoxLayout, QApplication
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize, Qt
 import sys
 import json
-import localize
-import styles
+import settings_localize
+import settings_styles
 import main_menu
 
 
@@ -18,9 +17,7 @@ class SettingsWindow(QMainWindow):
         self.setWindowIcon(QIcon('images/settings.png'))
 
         # Set the size of window
-        self.width = 1200
-        self.height = int(0.618 * self.width)
-        self.resize(self.width, self.height)
+        self.resize(1200, int(0.618 * 1200))
         self.setMinimumSize(900, 500)
 
         # Container
@@ -70,12 +67,17 @@ class SettingsWindow(QMainWindow):
         self.ENButton.clicked.connect(self.language_button_clicked)
         self.UAButton.clicked.connect(self.language_button_clicked)
 
-        localize.set_settings_localization(self)
-        styles.Styles.set_settings_styles(self)
+        settings_localize.set_settings_localization(self)
+        settings_styles.Styles.set_settings_styles(self)
         self.init_body()
 
         # Main window
         self.main_window = None
+
+    def set_size(self):
+        with open('settings.json') as json_file:
+            lg_info = json.load(json_file)
+        self.resize(lg_info["screen"][0], lg_info["screen"][1])
 
     def init_header(self):
         self.headerQHBoxLayout.addWidget(self.backQButton)
@@ -111,18 +113,33 @@ class SettingsWindow(QMainWindow):
             if lg_button == button:
                 button.setIconSize(QSize(56, 56))
                 button.setFocus()
-                lg_info = {'language': button.objectName()}
-                with open('language.json', 'w') as outfile:
+                with open('settings.json') as json_file:
+                    lg_info = json.load(json_file)
+                lg_info["language"] = button.objectName()
+                with open('settings.json', 'w') as outfile:
                     json.dump(lg_info, outfile)
-                localize.set_settings_localization(self)
+                settings_localize.set_settings_localization(self)
             else:
                 lg_button.setIconSize(QSize(32, 32))
 
     def back_button_clicked(self):
         if self.main_window is None:
             self.main_window = main_menu.WindowInteractivity()
+
+        self.remember_window_size()
+        self.main_window.set_size()
         self.main_window.show()
         self.close()
+
+    def remember_window_size(self):
+        with open('settings.json') as json_file:
+            lg_info = json.load(json_file)
+        lg_info["screen"] = self.get_window_size()
+        with open('settings.json', 'w') as outfile:
+            json.dump(lg_info, outfile)
+
+    def get_window_size(self):
+        return self.size().width(), self.size().height()
 
 
 if __name__ == '__main__':

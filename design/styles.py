@@ -147,6 +147,17 @@ class Styles:
                 border-left: 0;
                 background-color: white;
                 selection-background-color: #6938fb;
+                selection-color: white;
+                }
+            
+                QHeaderView::section {
+                border: 0;
+                background-color: white;
+                color: black;
+                }
+                QHeaderView::section:hover {
+                background-color: #f5f5f5;
+                color: black;
                 }
                 """)
 
@@ -260,54 +271,3 @@ class Styles:
         color: #5c5c5c;
         }
         """)
-
-    @staticmethod
-    def set_settings_styles(window):
-        window.setStyleSheet("""
-                        background-color: beige;
-                        color: #5c5c5c;
-                        font-family: "Century Gothic";
-                        """)
-        window.settingsLabel.setStyleSheet("""
-        font-size: 30px;
-        """)
-        window.languageLabel.setStyleSheet("""
-        font-size: 20px;
-        """)
-        window.backQButton.setStyleSheet("""
-                QPushButton:hover
-                {
-                border: 2px dashed #5c5c5c;
-                border-radius: 25px;
-                }
-
-                QPushButton:pressed 
-                {
-                border-style: solid;
-                }
-
-                QPushButton
-                {
-                border: 0;
-                width: 50px;
-                height: 50px;
-                }
-                """)
-
-        window.ENButton.setStyleSheet("""
-                QPushButton
-                {
-                width: 64px;
-                height: 64px;
-                border: 0;
-                }
-                """)
-
-        window.UAButton.setStyleSheet("""
-                QPushButton
-                {
-                width: 64px;
-                height: 64px;
-                border: 0;
-                }
-                """)
