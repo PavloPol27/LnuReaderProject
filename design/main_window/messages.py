@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
-from styles import Styles
+
+import design.main_window.styles
 
 
 class WarningMessage(QMessageBox):

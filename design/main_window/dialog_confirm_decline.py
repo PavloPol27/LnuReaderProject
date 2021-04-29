@@ -27,7 +27,7 @@ class ConfirmDialog(QDialog):
 
     def change_style(self):
         self.setWindowTitle('Deleting')
-        self.setWindowIcon(QIcon('images/removeBook.ico'))
+        self.setWindowIcon(QIcon('../images/removeBook.ico'))
         self.setFixedSize(300, 100)
         self.setStyleSheet('''
         QDialog {

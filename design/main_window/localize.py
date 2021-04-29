@@ -1,6 +1,7 @@
 # Program supports EN, UA languages
 import json
 from PyQt5.QtCore import QSize
+import os
 
 
 # abstract base class
@@ -56,7 +57,7 @@ class UALocalizator(Localizator):
 def set_main_menu_localization(window):
     # changed the directory to solve the problem locally;
     # file was not found without full path.
-    with open('settings.json') as json_file:
+    with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
         ENLocalizator().localize_main_window(window)

@@ -1,5 +1,4 @@
-from main_menu_front import *
-import settings_menu
+from design.main_window.main_menu_front import *
 import json
 
 
@@ -74,30 +73,6 @@ class WindowInteractivity(MainWindow):
             WarningMessage("Category is already exists", "You are bustard")
             return True
 
-    def settings_button_clicked(self):
-        """
-        Method opens settings window and closes current window.
-        :return: None
-        """
-        if self.sett_menu is None:
-            self.sett_menu = settings_menu.SettingsWindow()
-
-        self.remember_window_size()
-
-        self.sett_menu.set_size()
-        self.sett_menu.show()
-        self.close()
-
-    def remember_window_size(self):
-        with open('settings.json') as json_file:
-            lg_info = json.load(json_file)
-        lg_info["screen"] = self.get_window_size()
-        with open('settings.json', 'w') as outfile:
-            json.dump(lg_info, outfile)
-
-    def get_window_size(self):
-        return self.size().width(), self.size().height()
-
     def mousePressEvent(self, a0: QMouseEvent) -> None:
         """
         Overloading mouse press event. Clears Focus from window.
@@ -107,28 +82,6 @@ class WindowInteractivity(MainWindow):
         focused_widget = QApplication.focusWidget()
         if isinstance(focused_widget, QLineEdit):
             focused_widget.clearFocus()
-
-    def on_context_menu(self, point):
-        """
-        Method that show context menu when user does right mouse click on category.
-        :param point: cursor coordinates
-        :return: None
-        """
-        self.buttonCalledAction = self.sender()
-        if not self.is_standard_category():
-            self.delete_act.setEnabled(True)
-            self.edit_act.setEnabled(True)
-        else:
-            self.delete_act.setEnabled(False)
-            self.edit_act.setEnabled(False)
-        self.context_menu.exec_(self.buttonCalledAction.mapToGlobal(point))
-
-    def is_standard_category(self):
-        """
-        Method checks if right clicked category is standard (All + Favourites).
-        :return: boolean
-        """
-        return self.buttonCalledAction in [button for button in self.categories[:2]]
 
     def keyPressEvent(self, event):
         """
@@ -250,12 +203,5 @@ class WindowInteractivity(MainWindow):
             return
         row = self.table.currentRow()
         self.table.selectRow(row+i)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = WindowInteractivity()
-    win.show()
-    sys.exit(app.exec_())
 
 # TODO table styles

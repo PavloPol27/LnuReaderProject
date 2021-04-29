@@ -1,15 +1,15 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayout,\
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayout, \
     QHBoxLayout, QApplication, QInputDialog, QTableWidget, QHeaderView, \
-    QTableWidgetItem, QLineEdit, QScrollBar, QAbstractItemView, QMessageBox,\
+    QTableWidgetItem, QLineEdit, QScrollBar, QAbstractItemView, QMessageBox, \
     QShortcut, QFileDialog, QMenu
 from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
 from PyQt5.QtCore import QSize, Qt
-from dialog_confirm_decline import ConfirmDialog
-from messages import WarningMessage
+from design.main_window.dialog_confirm_decline import ConfirmDialog
+from design.main_window.messages import WarningMessage
 import db.database as db
 import sys
-import localize
-import styles
+import design.main_window.localize as localize
+import design.main_window.styles as styles
 import logging
 import os
 import json
@@ -29,14 +29,6 @@ class MainWindow(QMainWindow):
         db.create_db(self.db_connection)
         self.buttonCalledAction = None
 
-        # Set main window options
-        self.setWindowTitle('LNU Reader')
-        self.setWindowIcon(QIcon('images/icon.ico'))
-
-        # Set the size of window
-        self.setMinimumSize(900, 500)
-        self.resize(1200, int(0.618 * 1200))
-
         # Main body
         self.bodyQVBoxLayout = QVBoxLayout()
         self.body = QWidget()
@@ -50,13 +42,13 @@ class MainWindow(QMainWindow):
 
         # Add Book Button
         self.addBookQButton = QPushButton()
-        self.addBookQButton.setIcon(QIcon('images/add.png'))
+        self.addBookQButton.setIcon(QIcon('design/images/add.png'))
         self.addBookQButton.setIconSize(QSize(28, 28))
         self.addBookQButton.setFocusPolicy(Qt.NoFocus)
 
         # Remove Book Button
         self.removeBookQButton = QPushButton()
-        self.removeBookQButton.setIcon(QIcon('images/removeBook.png'))
+        self.removeBookQButton.setIcon(QIcon('design/images/removeBook.png'))
         self.removeBookQButton.setIconSize(QSize(28, 28))
         self.removeBookQButton.setFocusPolicy(Qt.NoFocus)
 
@@ -67,7 +59,7 @@ class MainWindow(QMainWindow):
 
         # Settings
         self.settingsQButton = QPushButton()
-        self.settingsQButton.setIcon(QIcon('images/settings.png'))
+        self.settingsQButton.setIcon(QIcon('design/images/settings.png'))
         self.settingsQButton.setIconSize(QSize(32, 32))
         self.settingsQButton.setFocusPolicy(Qt.NoFocus)
         self.settingsQButton.clicked.connect(self.settings_button_clicked)
@@ -111,7 +103,7 @@ class MainWindow(QMainWindow):
         # Create Category Dialog
         self.categoryQDialog = QInputDialog()
         self.categoryQDialog.setInputMode(QInputDialog.TextInput)
-        self.categoryQDialog.setWindowIcon(QIcon('images/icon.ico'))
+        self.categoryQDialog.setWindowIcon(QIcon('design/images/icon.ico'))
         self.categoryQDialog.resize(600, 400)
 
         # Content
@@ -141,17 +133,19 @@ class MainWindow(QMainWindow):
         # Settings window
         self.sett_menu = None
 
+        self.cont = QWidget()
+
     def set_size(self):
-        with open('settings.json') as json_file:
+        with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
             lg_info = json.load(json_file)
         self.resize(lg_info["screen"][0], lg_info["screen"][1])
 
     @staticmethod
     def connect_to_db():
-        path_to_db = r'C:\Users\Max\Documents\LNUReader'
+        path_to_db = os.path.expanduser("~/Documents/LNUReader")
         if not os.path.exists(path_to_db):
             os.makedirs(path_to_db)
-        return db.create_connection(r'C:\Users\Max\Documents\LNUReader\ReaderDatabase.db')
+        return db.create_connection(path_to_db + r'\ReaderDatabase.db')
 
     def init_header(self):
         self.headerQHBoxLayout.addWidget(self.addBookQButton)
@@ -233,3 +227,39 @@ class MainWindow(QMainWindow):
             styles.Styles.set_category_button_styles(ctg)
         styles.Styles.set_clicked_category_button_styles(self.sender())
         self.categoryQLabel.setText(self.sender().text())
+
+    def settings_button_clicked(self):
+        """
+        Method opens settings window and closes current window.
+        :return: None
+        """
+        # if self.sett_menu is None:
+        #     self.sett_menu = settings_menu.SettingsWindow()
+        #
+        # self.remember_window_size()
+        #
+        # self.sett_menu.set_size()
+        # self.sett_menu.show()
+        # self.close()
+
+    def on_context_menu(self, point):
+        """
+        Method that show context menu when user does right mouse click on category.
+        :param point: cursor coordinates
+        :return: None
+        """
+        self.buttonCalledAction = self.sender()
+        if not self.is_standard_category():
+            self.delete_act.setEnabled(True)
+            self.edit_act.setEnabled(True)
+        else:
+            self.delete_act.setEnabled(False)
+            self.edit_act.setEnabled(False)
+        self.context_menu.exec_(self.buttonCalledAction.mapToGlobal(point))
+
+    def is_standard_category(self):
+        """
+        Method checks if right clicked category is standard (All + Favourites).
+        :return: boolean
+        """
+        return self.buttonCalledAction in [button for button in self.categories[:2]]

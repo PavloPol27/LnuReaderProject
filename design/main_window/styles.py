@@ -4,12 +4,6 @@ class Styles:
 
     @staticmethod
     def set_main_menu_styles(window):
-        # Main style
-        window.setStyleSheet("""
-                background-color: beige;
-                color: #5c5c5c;
-                font-family: "Century Gothic";
-                """)
 
         # Book buttons styles
         window.addBookQButton.setStyleSheet("""

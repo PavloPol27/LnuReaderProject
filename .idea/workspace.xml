@@ -3,13 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added comments and rewrite some methods. Refactored code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/design/ReaderLogger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/language.json" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/localize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/main_menu_front.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_menu_front.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/styles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/ReaderLogger.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/dialog_confirm_decline.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/dialog_confirm_decline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/localize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_menu_front.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/main_menu_front.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings_localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/localize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/settings_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings_styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/styles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/styles.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/design/settings_window" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="ReaderModeSettings">
@@ -51,15 +56,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\settings_window" />
       <recent name="E:\Написані програми\Python\BookReaderProject\design" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\settings_window" />
+      <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main_window" />
       <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design" />
       <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\settings menu" />
       <recent name="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main menu" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dialog_confirm_decline">
+  <component name="RunManager" selected="Python.main">
     <configuration name="dialog_confirm_decline" type="PythonConfigurationType" factoryName="Python">
       <module name="LnuReaderProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,7 +80,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main_menu.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Max\source\LnuReaderProject\LnuReaderProject\design\main_window\main_menu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LnuReaderProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,7 +134,13 @@
     <list>
       <item itemvalue="Python.dialog_confirm_decline" />
       <item itemvalue="Python.plot" />
+      <item itemvalue="Python.main" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

@@ -1,7 +1,7 @@
 # Program supports EN, UA languages
 import json
 from PyQt5.QtCore import QSize
-
+import os
 
 # abstract base class
 class Localizator:
@@ -27,7 +27,7 @@ class UALocalizator(Localizator):
 
 
 def set_settings_localization(window):
-    with open('settings.json') as json_file:
+    with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
         ENLocalizator().localize_settings_window(window)
