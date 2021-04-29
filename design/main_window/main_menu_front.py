@@ -24,9 +24,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         # needed variable
-
-        self.db_connection = self.connect_to_db()
-        db.create_db(self.db_connection)
+        self.db_connection = None
         self.buttonCalledAction = None
 
         # Main body
@@ -126,6 +124,7 @@ class MainWindow(QMainWindow):
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         # Main run
+        self.setup_working_folder()
         localize.set_main_menu_localization(self)
         styles.Styles.set_main_menu_styles(self)
         self.init_body()
@@ -139,13 +138,6 @@ class MainWindow(QMainWindow):
         with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
             lg_info = json.load(json_file)
         self.resize(lg_info["screen"][0], lg_info["screen"][1])
-
-    @staticmethod
-    def connect_to_db():
-        path_to_db = os.path.expanduser("~/Documents/LNUReader")
-        if not os.path.exists(path_to_db):
-            os.makedirs(path_to_db)
-        return db.create_connection(path_to_db + r'\ReaderDatabase.db')
 
     def init_header(self):
         self.headerQHBoxLayout.addWidget(self.addBookQButton)
@@ -214,6 +206,19 @@ class MainWindow(QMainWindow):
         self.body.setLayout(self.bodyQVBoxLayout)
         self.setCentralWidget(self.body)
 
+    def setup_working_folder(self):
+        """
+        Checks existance of all necessary files in
+        C:/Users/User/Documents/LNUReader
+        and opens connection to database.
+        If any of files/folder are missing, creates a default/empty ones.
+        :return: None
+        """
+        self.check_folder()
+        self.db_connection = self.connect_to_db()
+        db.create_db(self.db_connection)
+        self.check_json()
+
     def set_category_button_options(self, category_button):
         styles.Styles.set_category_button_styles(category_button)
         category_button.setFocusPolicy(Qt.ClickFocus)
@@ -263,3 +268,43 @@ class MainWindow(QMainWindow):
         :return: boolean
         """
         return self.buttonCalledAction in [button for button in self.categories[:2]]
+
+    @staticmethod
+    def check_folder():
+        """
+        Method checks if the folder with database and settings file exists.
+        If it doesn't, creates one.
+        :return: None
+        """
+        folder_path = os.path.expanduser("~/Documents/LNUReader")
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+
+    @staticmethod
+    def connect_to_db():
+        """
+        Method creates a connection to database
+        :return: Connection object
+        """
+        database_path = os.path.expanduser("~/Documents/LNUReader/ReaderDatabase.db")
+        return db.create_connection(database_path)
+
+    def check_json(self):
+        """
+        Method checks if file with settings exists.
+        If not, creates a default one.
+        :return: None
+        """
+        settings_path = (os.path.expanduser("~/Documents/LNUReader/settings.json"))
+        if not os.path.exists(settings_path):
+            self.create_default_json()
+
+    @staticmethod
+    def create_default_json():
+        """
+        Creates a json file with default settings.
+        :return: None
+        """
+        settings = {"language": "EN"}
+        with open(os.path.expanduser("~/Documents/LNUReader/settings.json"), 'w') as outfile:
+            json.dump(settings, outfile)
