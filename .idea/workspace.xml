@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="31ccf679-b9ba-4f72-8e44-3c813ef0329e" name="Default Changelist" comment="Added comments and rewrite some methods. Refactored code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReaderLogger.log" beforeDir="false" afterPath="$PROJECT_DIR$/ReaderLogger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/ReaderLogger.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/dialog_confirm_decline.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/dialog_confirm_decline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/localize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/main_menu_front.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/main_menu_front.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/messages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings_localize.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/localize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/settings_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/settings_styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/styles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/styles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/main_window/main_menu_front.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/main_window/main_menu_front.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/settings_window/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/design/settings_window/styles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

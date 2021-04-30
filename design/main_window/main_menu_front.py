@@ -133,13 +133,6 @@ class MainWindow(QMainWindow):
         # Settings window
         self.sett_menu = None
 
-        self.cont = QWidget()
-
-    def set_size(self):
-        with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
-            lg_info = json.load(json_file)
-        self.resize(lg_info["screen"][0], lg_info["screen"][1])
-
     @staticmethod
     def connect_to_db():
         path_to_db = os.path.expanduser("~/Documents/LNUReader")

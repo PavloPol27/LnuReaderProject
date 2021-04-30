@@ -1,16 +1,19 @@
 from design.main_window.main_menu import *
 from design.settings_window.settings_menu import *
+from design.reader_window.reader_window import *
 
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setMinimumSize(900, 500)
+        self.setMinimumSize(900, 600)
         self.resize(1200, int(0.618 * 1200))
         self.set_styles()
 
         self.currentWindow = None
+        # IF YOU WANT TO WORK WITH READER MENU, CHANGE THE LINE BELOW TO
+        # self.exec_reader_menu()
         self.exec_main_menu()
 
     def exec_main_menu(self):
@@ -25,6 +28,12 @@ class Window(QMainWindow):
         self.setWindowIcon(QIcon('design/images/settings.png'))
         self.currentWindow = SettingsWindow()
         self.currentWindow.backQButton.clicked.connect(self.exec_main_menu)
+        self.setCentralWidget(self.currentWindow)
+
+    def exec_reader_menu(self):
+        self.setWindowTitle('LNU Reader')
+        self.setWindowIcon(QIcon('design/images/icon.ico'))
+        self.currentWindow = ReaderWindow()
         self.setCentralWidget(self.currentWindow)
 
     def set_styles(self):

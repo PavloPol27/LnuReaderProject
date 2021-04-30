@@ -4,11 +4,6 @@ class Styles:
 
     @staticmethod
     def set_settings_styles(window):
-        window.setStyleSheet("""
-                        background-color: beige;
-                        color: #5c5c5c;
-                        font-family: "Century Gothic";
-                        """)
         window.settingsLabel.setStyleSheet("""
         font-size: 30px;
         """)
