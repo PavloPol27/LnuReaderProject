@@ -108,7 +108,7 @@ class ReaderWindow(QMainWindow):
         self.footer.setContentsMargins(11, 0, 0, 0)
 
         # Show progress Label
-        self.progressLabel = QLabel("                    100%")
+        self.progressLabel = QLabel("100%                    ")
         self.progressLabel.setAlignment(Qt.AlignCenter)
 
         # Switch page block
