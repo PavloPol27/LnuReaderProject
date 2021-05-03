@@ -12,28 +12,34 @@ class Localizator:
 
 class ENLocalizator(Localizator):
 
-    def localize_settings_window(self, window):
-        window.settingsLabel.setText('Settings')
-        window.setWindowTitle('Settings')
-        window.languageLabel.setText('Language')
+    def localize_reader_window(self, window):
+        window.fullscreenQButton.setToolTip("Fullscreen mode")
+        window.zoomInQButton.setToolTip("Zoom In")
+        window.zoomOutQButton.setToolTip("Zoom Out")
+        window.contentQButton.setToolTip("Show content")
+        window.addBookmarkQButton.setToolTip("Add a bookmark")
+        window.addNoteQButton.setToolTip("Add a note")
+        window.switchModeQButton.setToolTip("Switch a mode")
 
 
 class UALocalizator(Localizator):
 
-    def localize_settings_window(self, window):
-        window.settingsLabel.setText('Налаштування')
-        window.setWindowTitle('Налаштування')
-        window.languageLabel.setText('Мова       ')
+    def localize_reader_window(self, window):
+        window.fullscreenQButton.setToolTip("Повноекранний режим")
+        window.zoomInQButton.setToolTip("Приблизити")
+        window.zoomOutQButton.setToolTip("Віддалити")
+        window.contentQButton.setToolTip("Показати зміст")
+        window.addBookmarkQButton.setToolTip("Додати закладку")
+        window.addNoteQButton.setToolTip("Додати нотатку")
+        window.switchModeQButton.setToolTip("Змінити режим")
 
 
-def set_settings_localization(window):
+def set_reader_localization(window):
     with open(os.path.expanduser("~/Documents/LNUReader/settings.json")) as json_file:
         lg_info = json.load(json_file)
     if lg_info['language'] == 'EN':
-        ENLocalizator().localize_settings_window(window)
-        window.ENButton.setIconSize(QSize(56, 56))
+        ENLocalizator().localize_reader_window(window)
     elif lg_info['language'] == 'UA':
-        UALocalizator().localize_settings_window(window)
-        window.UAButton.setIconSize(QSize(56, 56))
+        UALocalizator().localize_reader_window(window)
     else:
         raise Exception('something goes wrong.')

@@ -34,6 +34,7 @@ class Window(QMainWindow):
         self.setWindowTitle('LNU Reader')
         self.setWindowIcon(QIcon('design/images/icon.ico'))
         self.currentWindow = ReaderWindow()
+        self.currentWindow.backQButton.clicked.connect(self.exec_main_menu)
         self.setCentralWidget(self.currentWindow)
 
     def set_styles(self):

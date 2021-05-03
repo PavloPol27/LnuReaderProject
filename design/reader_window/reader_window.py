@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QLabel, QVBoxLayout, \
     QHBoxLayout, QApplication, QInputDialog, QTableWidget, QHeaderView, \
     QTableWidgetItem, QLineEdit, QScrollBar, QAbstractItemView, QMessageBox, \
-    QShortcut, QFileDialog, QMenu, QSizePolicy
+    QShortcut, QFileDialog, QMenu, QSizePolicy, QStackedWidget
 from PyQt5.QtGui import QFont, QIcon, QMouseEvent, QKeyEvent
 from PyQt5.QtCore import QSize, Qt
 from design.main_window.dialog_confirm_decline import ConfirmDialog
@@ -9,8 +9,10 @@ from design.main_window.messages import WarningMessage
 import db.database as db
 import sys
 import design.reader_window.styles as styles
+import design.reader_window.localize as localize
 import logging
 import os
+import design.reader_window.content_window as content_win
 
 
 class ReaderWindow(QMainWindow):
@@ -20,6 +22,9 @@ class ReaderWindow(QMainWindow):
         # Main body
         self.bodyQHBoxLayout = QVBoxLayout()
         self.body = QWidget()
+
+        self.stack = QStackedWidget()
+        self.stack.addWidget(self.body)
 
         # Container
         self.containerQHBoxLayout = QHBoxLayout()
@@ -36,6 +41,13 @@ class ReaderWindow(QMainWindow):
         self.backQButton.setIcon(QIcon('design/images/back.png'))
         self.backQButton.setIconSize(QSize(32, 32))
         self.backQButton.setFocusPolicy(Qt.NoFocus)
+        self.backQButton.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        styles.Styles.set_back_button_styles(self.backQButton)
+
+        # Button menu
+        self.buttonMenuQVBoxLayout = QVBoxLayout()
+        self.buttonMenuQVBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.buttonMenu = QWidget()
 
         # Fullscreen Button
         self.fullscreenQButton = QPushButton()
@@ -60,6 +72,7 @@ class ReaderWindow(QMainWindow):
         self.contentQButton.setIcon(QIcon('design/images/content.png'))
         self.contentQButton.setIconSize(QSize(32, 32))
         self.contentQButton.setFocusPolicy(Qt.NoFocus)
+        self.contentQButton.clicked.connect(self.show_content)
 
         # Add Bookmarks Button
         self.addBookmarkQButton = QPushButton()
@@ -86,13 +99,16 @@ class ReaderWindow(QMainWindow):
         background-color: white;
         """)
 
+        # Content window
+        self.content_window = None
+
         # Footer
         self.footerQHBoxLayout = QHBoxLayout()
         self.footer = QWidget()
         self.footer.setContentsMargins(11, 0, 0, 0)
 
         # Show progress Label
-        self.progressLabel = QLabel("BookName 100%")
+        self.progressLabel = QLabel("                    100%")
         self.progressLabel.setAlignment(Qt.AlignCenter)
 
         # Switch page block
@@ -113,18 +129,22 @@ class ReaderWindow(QMainWindow):
         self.nextPageQButton.setFocusPolicy(Qt.NoFocus)
 
         styles.Styles.set_window_styles(self)
+        localize.set_reader_localization(self)
         self.init_body()
 
     def init_sidebar(self):
         self.sidebarQVBoxLayout.addWidget(self.backQButton)
-        self.sidebarQVBoxLayout.addWidget(self.fullscreenQButton)
-        self.sidebarQVBoxLayout.addWidget(self.zoomInQButton)
-        self.sidebarQVBoxLayout.addWidget(self.zoomOutQButton)
-        self.sidebarQVBoxLayout.addWidget(self.contentQButton)
-        self.sidebarQVBoxLayout.addWidget(self.addBookmarkQButton)
-        self.sidebarQVBoxLayout.addWidget(self.addNoteQButton)
-        self.sidebarQVBoxLayout.addWidget(self.switchModeQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.fullscreenQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.zoomInQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.zoomOutQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.contentQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.addBookmarkQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.addNoteQButton)
+        self.buttonMenuQVBoxLayout.addWidget(self.switchModeQButton)
+        self.buttonMenu.setLayout(self.buttonMenuQVBoxLayout)
+        self.sidebarQVBoxLayout.addWidget(self.buttonMenu)
         self.sidebarQVBoxLayout.addStretch()
+        self.sidebarQVBoxLayout.setSpacing(80)
         self.sidebar.setLayout(self.sidebarQVBoxLayout)
 
     def init_content(self):
@@ -154,4 +174,18 @@ class ReaderWindow(QMainWindow):
         self.bodyQHBoxLayout.addWidget(self.container)
         self.bodyQHBoxLayout.addWidget(self.footer)
         self.body.setLayout(self.bodyQHBoxLayout)
-        self.setCentralWidget(self.body)
+        self.setCentralWidget(self.stack)
+
+    def show_content(self):
+        self.stack.addWidget(self.create_content_widget())
+        self.stack.setCurrentIndex(1)
+
+    def hide_content(self):
+        self.stack.setCurrentIndex(0)
+        self.stack.removeWidget(self.content_window)
+        self.content_window = None
+
+    def create_content_widget(self):
+        self.content_window = content_win.ContentWindow()
+        self.content_window.backQButton.clicked.connect(self.hide_content)
+        return self.content_window
