@@ -60,7 +60,6 @@ class MainWindow(QMainWindow):
         self.settingsQButton.setIcon(QIcon('design/images/settings.png'))
         self.settingsQButton.setIconSize(QSize(32, 32))
         self.settingsQButton.setFocusPolicy(Qt.NoFocus)
-        self.settingsQButton.clicked.connect(self.settings_button_clicked)
         # -----------------
         # Container
         self.containerQHBoxLayout = QHBoxLayout()
@@ -237,20 +236,6 @@ class MainWindow(QMainWindow):
             styles.Styles.set_category_button_styles(ctg)
         styles.Styles.set_clicked_category_button_styles(self.sender())
         self.categoryQLabel.setText(self.sender().text())
-
-    def settings_button_clicked(self):
-        """
-        Method opens settings window and closes current window.
-        :return: None
-        """
-        # if self.sett_menu is None:
-        #     self.sett_menu = settings_menu.SettingsWindow()
-        #
-        # self.remember_window_size()
-        #
-        # self.sett_menu.set_size()
-        # self.sett_menu.show()
-        # self.close()
 
     def on_context_menu(self, point):
         """
